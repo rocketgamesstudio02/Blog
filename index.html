@@ -108,16 +108,6 @@
   .card h3{
     font-family:var(--mono); font-size:1.15rem; font-weight:600; margin:0 0 10px; line-height:1.3;
   }
-  .summary{
-    font-size:0.9rem; color:var(--paper-dim); margin:0 0 14px;
-    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
-  }
-  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:4px;}
-  .tag{
-    font-family:var(--mono); font-size:0.66rem; text-transform:uppercase; letter-spacing:0.03em;
-    color:var(--paper-dim); border:1px solid var(--line-strong); border-radius:2px; padding:3px 8px;
-  }
-
   .detail{
     max-height:0; overflow:hidden; transition:max-height .28s ease;
   }
@@ -130,14 +120,18 @@
   .diff-fix .sym{color:var(--remove);}
   .diff-change .sym{color:var(--copper-bright);}
   .requires{font-family:var(--mono); font-size:0.75rem; color:var(--paper-dim); margin-bottom:16px;}
+  .dl-row{display:flex; flex-wrap:wrap; gap:10px;}
   .dl-btn{
-    display:inline-block; background:var(--copper); color:var(--ink); text-decoration:none;
+    display:inline-block; text-decoration:none; border:1px solid transparent;
     font-family:var(--mono); font-weight:600; font-size:0.8rem; letter-spacing:0.03em;
-    text-transform:uppercase; padding:11px 20px; border-radius:3px; border:none; cursor:pointer;
-    transition:background .15s ease;
+    text-transform:uppercase; padding:11px 20px; border-radius:3px; cursor:pointer;
+    transition:background .15s ease, border-color .15s ease, color .15s ease;
   }
-  .dl-btn:hover{background:var(--copper-bright);}
-  .expand-hint{font-family:var(--mono); font-size:0.68rem; color:var(--paper-dim); text-transform:uppercase; letter-spacing:0.05em;}
+  .dl-btn.main{background:var(--copper); color:var(--ink);}
+  .dl-btn.main:hover{background:var(--copper-bright);}
+  .dl-btn.mirror{background:transparent; border-color:var(--line-strong); color:var(--paper);}
+  .dl-btn.mirror:hover{border-color:var(--copper); color:var(--copper-bright);}
+  .expand-hint{font-family:var(--mono); font-size:0.68rem; color:var(--paper-dim); text-transform:uppercase; letter-spacing:0.05em; margin-top:14px;}
 
   /* ============ ABOUT ============ */
   .about{padding:20px 0 70px; border-top:1px solid var(--line-strong);}
@@ -146,6 +140,14 @@
     font-size:0.85rem; color:var(--copper); margin:40px 0 16px;
   }
   .about p{max-width:640px; color:var(--paper-dim); font-size:0.95rem;}
+  .contact-links{display:flex; flex-wrap:wrap; gap:12px; list-style:none; margin:20px 0 0; padding:0;}
+  .contact-links a{
+    display:inline-block; font-family:var(--mono); font-size:0.78rem; text-transform:uppercase;
+    letter-spacing:0.05em; text-decoration:none; color:var(--copper);
+    border:1px solid var(--line-strong); padding:9px 16px; border-radius:3px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  .contact-links a:hover{border-color:var(--copper); color:var(--copper-bright);}
 
   /* ============ FOOTER ============ */
   footer{border-top:1px solid var(--line-strong); padding:28px 0;}
@@ -197,6 +199,10 @@
       Bugs, requests, and "this broke my save" reports welcome — reach out through
       any of the links below.
     </p>
+    <ul class="contact-links">
+      <li><a href="https://www.patreon.com/c/RocketGames474" target="_blank" rel="noopener noreferrer">Patreon</a></li>
+      <li><a href="https://t.me/kush_021" target="_blank" rel="noopener noreferrer">Telegram</a></li>
+    </ul>
   </section>
 </main>
 
@@ -204,10 +210,10 @@
   <div class="container footer-row">
     <ul class="sociallinks">
       <!-- Swap these for your real profiles -->
-      <li><a href="#">GitHub</a></li>
-      <li><a href="#">Discord</a></li>
-      <li><a href="#">Nexus Mods</a></li>
-      <li><a href="mailto:you@example.com">Email</a></li>
+      <li><a href="https://t.me/kush_021">Telegram</a></li>
+      <li><a href="https://www.patreon.com/c/RocketGames474">Patreon</a></li>
+      <li><a href="#">Mods</a></li>
+      <li><a href="mailto:rocketgamesstudio02@gmail.com">Email</a></li>
     </ul>
     <p class="copyright">© <span id="year"></span> · Built with plain HTML.</p>
   </div>
@@ -221,7 +227,7 @@
    downloadUrl can point to a GitHub release, Nexus Mods page, or your
    own file host — anywhere your file actually lives.
    ===================================================================== */
-const MODS = [
+const MODS = []; /*
   {
     id:'weather-overhaul',
     title:'Dynamic Weather Overhaul',
@@ -318,7 +324,7 @@ const MODS = [
     requires:'Base game v1.5+ · Not compatible with Easy Mode mods',
     downloadUrl:'#'
   }
-];
+*/
 
 /* ===================== rendering ===================== */
 const grid = document.getElementById('releases');
@@ -351,16 +357,16 @@ function cardHtml(mod, idx){
           <span class="platform-tag">${escapeHtml(mod.platform)}</span>
         </div>
         <h3>${escapeHtml(mod.title)}</h3>
-        <p class="summary">${escapeHtml(mod.summary)}</p>
-        <div class="tags">
-          ${mod.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}
-        </div>
+        
         <p class="expand-hint" style="margin-top:12px;">click to expand ↓</p>
         <div class="detail">
           <div class="detail-inner">
             <ul class="changelog">${changelogHtml(mod.changelog)}</ul>
             <p class="requires">${escapeHtml(mod.requires)}</p>
-            <a class="dl-btn" href="${mod.downloadUrl}" onclick="event.stopPropagation()">Download</a>
+            <div class="dl-row">
+<a class="dl-btn main" href="${mod.downloadUrl}" onclick="event.stopPropagation()">Main Link</a>
+<a class="dl-btn mirror" href="${mod.mirrorUrl||'#'}" onclick="event.stopPropagation()">Mirror Link</a>
+</div>
           </div>
         </div>
       </div>
