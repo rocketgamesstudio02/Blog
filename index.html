@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mod Release Log</title>
+<meta name="description" content="A running devlog of mods, patches, and experiments.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============ TOKENS ============ */
+  :root{
+    --ink:#14171C;
+    --panel:#1C2029;
+    --panel-raised:#232833;
+    --paper:#ECE9E1;
+    --paper-dim:#9CA0A8;
+    --copper:#C97B3D;
+    --copper-bright:#E0985C;
+    --add:#6FCF7B;
+    --remove:#E0736C;
+    --line:rgba(236,233,225,0.08);
+    --line-strong:#2A2F38;
+    --radius:5px;
+    --mono:'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --sans:'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+    --maxw:1100px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--paper);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  .container{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+  a{color:inherit;}
+  :focus-visible{outline:2px solid var(--copper-bright); outline-offset:2px;}
+
+  .blueprint{
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:36px 36px;
+  }
+
+  /* ============ HEADER ============ */
+  header.site{
+    position:sticky; top:0; z-index:10;
+    background:rgba(20,23,28,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line-strong);
+  }
+  nav.container{
+    display:flex; align-items:center; justify-content:center;
+    padding-top:18px; padding-bottom:18px;
+  }
+  .navlinks{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .navlinks a{
+    font-family:var(--mono); font-size:0.75rem; letter-spacing:0.08em;
+    text-transform:uppercase; text-decoration:none; color:var(--paper-dim);
+    transition:color .15s ease;
+  }
+  .navlinks a:hover{color:var(--copper-bright);}
+
+  /* ============ GRID / CARDS ============ */
+  .grid{
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr));
+    gap:20px; padding-top:56px; padding-bottom:80px;
+  }
+  .empty{font-family:var(--mono); color:var(--paper-dim); padding:40px 0; font-size:0.9rem;}
+
+  .card{
+    background:var(--panel); border:1px solid var(--line-strong); border-radius:var(--radius);
+    overflow:hidden; cursor:pointer; transition:transform .15s ease, border-color .15s ease;
+  }
+  .card:hover{transform:translateY(-3px); border-color:var(--copper);}
+
+  .cover{
+    height:120px; display:flex; align-items:center; justify-content:center;
+    position:relative; overflow:hidden;
+  }
+  .cover span{
+    font-family:var(--mono); font-weight:700; font-size:2.6rem;
+    color:rgba(236,233,225,0.14); letter-spacing:0.05em;
+  }
+  .cover-0{background:linear-gradient(135deg,#252a34,#343c4c);}
+  .cover-1{background:linear-gradient(135deg,#33271e,#4a3320);}
+  .cover-2{background:linear-gradient(135deg,#1e3226,#274536);}
+  .cover-3{background:linear-gradient(135deg,#382323,#4a2b2b);}
+
+  .card-body{padding:20px;}
+  .eyebrow{
+    display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:0.7rem; color:var(--paper-dim); margin-bottom:10px;
+    text-transform:uppercase; letter-spacing:0.04em;
+  }
+  .eyebrow .ver{color:var(--copper); font-weight:600;}
+  .platform-tag{
+    border:1px solid var(--line-strong); border-radius:2px; padding:2px 7px;
+    font-size:0.66rem; color:var(--paper-dim);
+  }
+  .card h3{
+    font-family:var(--mono); font-size:1.15rem; font-weight:600; margin:0 0 10px; line-height:1.3;
+  }
+  .summary{
+    font-size:0.9rem; color:var(--paper-dim); margin:0 0 14px;
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:4px;}
+  .tag{
+    font-family:var(--mono); font-size:0.66rem; text-transform:uppercase; letter-spacing:0.03em;
+    color:var(--paper-dim); border:1px solid var(--line-strong); border-radius:2px; padding:3px 8px;
+  }
+
+  .detail{
+    max-height:0; overflow:hidden; transition:max-height .28s ease;
+  }
+  .card.expanded .detail{max-height:600px;}
+  .detail-inner{padding:2px 20px 22px; border-top:1px solid var(--line-strong); margin-top:16px; padding-top:16px;}
+  .changelog{list-style:none; margin:0 0 16px; padding:0; font-family:var(--mono); font-size:0.82rem;}
+  .changelog li{margin-bottom:6px; padding-left:1.3em; position:relative;}
+  .changelog li .sym{position:absolute; left:0; font-weight:700;}
+  .diff-add .sym{color:var(--add);}
+  .diff-fix .sym{color:var(--remove);}
+  .diff-change .sym{color:var(--copper-bright);}
+  .requires{font-family:var(--mono); font-size:0.75rem; color:var(--paper-dim); margin-bottom:16px;}
+  .dl-btn{
+    display:inline-block; background:var(--copper); color:var(--ink); text-decoration:none;
+    font-family:var(--mono); font-weight:600; font-size:0.8rem; letter-spacing:0.03em;
+    text-transform:uppercase; padding:11px 20px; border-radius:3px; border:none; cursor:pointer;
+    transition:background .15s ease;
+  }
+  .dl-btn:hover{background:var(--copper-bright);}
+  .expand-hint{font-family:var(--mono); font-size:0.68rem; color:var(--paper-dim); text-transform:uppercase; letter-spacing:0.05em;}
+
+  /* ============ ABOUT ============ */
+  .about{padding:20px 0 70px; border-top:1px solid var(--line-strong);}
+  .about h2, .contact h2{
+    font-family:var(--mono); text-transform:uppercase; letter-spacing:0.04em;
+    font-size:0.85rem; color:var(--copper); margin:40px 0 16px;
+  }
+  .about p{max-width:640px; color:var(--paper-dim); font-size:0.95rem;}
+
+  /* ============ FOOTER ============ */
+  footer{border-top:1px solid var(--line-strong); padding:28px 0;}
+  .footer-row{display:flex; flex-wrap:wrap; justify-content:space-between; gap:16px; align-items:center;}
+  .sociallinks{display:flex; gap:20px; list-style:none; margin:0; padding:0;}
+  .sociallinks a{
+    font-family:var(--mono); font-size:0.75rem; text-transform:uppercase; letter-spacing:0.05em;
+    text-decoration:none; color:var(--paper-dim);
+  }
+  .sociallinks a:hover{color:var(--copper-bright);}
+  .copyright{font-family:var(--mono); font-size:0.72rem; color:var(--paper-dim);}
+
+  @media (max-width:600px){
+    .navlinks{gap:16px;}
+    .grid{padding-top:40px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site blueprint">
+  <nav class="container">
+    <ul class="navlinks">
+      <li><a href="#releases">Releases</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="container">
+    <div id="releases" class="grid" aria-live="polite"></div>
+  </section>
+
+  <section class="container about" id="about">
+    <h2>About</h2>
+    <p>
+      I build mods in my spare time and post them here as they're ready — new releases,
+      point updates, and the occasional experiment that didn't survive first contact.
+      Replace this paragraph with your own intro: what you mod, what got you into it,
+      and what people should expect to find here.
+    </p>
+  </section>
+
+  <section class="container contact" id="contact">
+    <h2>Contact</h2>
+    <p style="color:var(--paper-dim); font-size:0.95rem; max-width:640px;">
+      Bugs, requests, and "this broke my save" reports welcome — reach out through
+      any of the links below.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <ul class="sociallinks">
+      <!-- Swap these for your real profiles -->
+      <li><a href="#">GitHub</a></li>
+      <li><a href="#">Discord</a></li>
+      <li><a href="#">Nexus Mods</a></li>
+      <li><a href="mailto:you@example.com">Email</a></li>
+    </ul>
+    <p class="copyright">© <span id="year"></span> · Built with plain HTML.</p>
+  </div>
+</footer>
+
+<script>
+/* =====================================================================
+   HOW TO ADD A NEW MOD
+   Copy one object below, give it a unique id, and fill in your details.
+   changelog "type" accepts: "add" (+), "fix" (−), or "change" (~).
+   downloadUrl can point to a GitHub release, Nexus Mods page, or your
+   own file host — anywhere your file actually lives.
+   ===================================================================== */
+const MODS = [
+  {
+    id:'weather-overhaul',
+    title:'Dynamic Weather Overhaul',
+    version:'v2.3.0',
+    platform:'[Your Game]',
+    date:'2026-06-14',
+    tags:['Gameplay','Overhaul'],
+    summary:'Rebuilds the weather system with regional climates, seasonal transitions, and storms that actually affect gameplay instead of just the skybox.',
+    changelog:[
+      {type:'add', text:'Regional climate zones with distinct weather patterns'},
+      {type:'add', text:'Storm events that can damage unprotected crops'},
+      {type:'fix', text:'Rain no longer clips through interior cells'},
+      {type:'change', text:'Reduced fog density on lower graphics presets'}
+    ],
+    requires:'Base game v1.5+ · No known conflicts',
+    downloadUrl:'#'
+  },
+  {
+    id:'texture-revival',
+    title:'HD Texture Revival Pack',
+    version:'v1.4.1',
+    platform:'[Your Game]',
+    date:'2026-05-02',
+    tags:['Visual','Textures'],
+    summary:'Upscaled and hand-touched-up textures for terrain, foliage, and architecture. Built to stay faithful to the original art direction.',
+    changelog:[
+      {type:'add', text:'4K variants for all terrain textures'},
+      {type:'fix', text:'Corrected seam artifacts on cliff faces'},
+      {type:'change', text:'Slightly desaturated foliage to match base palette'}
+    ],
+    requires:'Base game v1.4+ · 2GB VRAM recommended',
+    downloadUrl:'#'
+  },
+  {
+    id:'inventory-ui',
+    title:'Streamlined Inventory UI',
+    version:'v3.0.0',
+    platform:'[Your Game]',
+    date:'2026-04-19',
+    tags:['UI','Quality of Life'],
+    summary:'A cleaner inventory screen with sorting, stack management, and search — no more scrolling through fifty unlabeled potions.',
+    changelog:[
+      {type:'add', text:'Search bar with fuzzy item matching'},
+      {type:'add', text:'Auto-sort by category, weight, or value'},
+      {type:'fix', text:'Tooltip no longer clips off-screen at 21:9'}
+    ],
+    requires:'Base game v1.3+ · Incompatible with other UI overhauls',
+    downloadUrl:'#'
+  },
+  {
+    id:'frame-pacing',
+    title:'Frame Pacing Fix',
+    version:'v1.0.2',
+    platform:'[Your Game]',
+    date:'2026-03-08',
+    tags:['Performance'],
+    summary:'A small patch that smooths out stutter during large battles by reworking how the engine schedules particle effects.',
+    changelog:[
+      {type:'fix', text:'Eliminated stutter during large-scale battles'},
+      {type:'change', text:'Capped particle count per frame under heavy load'}
+    ],
+    requires:'Base game v1.5+ · Any hardware',
+    downloadUrl:'#'
+  },
+  {
+    id:'dialogue-expansion',
+    title:'Expanded Dialogue Mod',
+    version:'v1.1.0',
+    platform:'[Your Game]',
+    date:'2026-01-27',
+    tags:['Content','Story'],
+    summary:'Adds new branching dialogue for minor NPCs who previously had one line each — small world-building details for the curious.',
+    changelog:[
+      {type:'add', text:'40+ new dialogue trees for town NPCs'},
+      {type:'add', text:'Optional subtitles-only mode'},
+      {type:'fix', text:'Fixed a softlock in one rare dialogue branch'}
+    ],
+    requires:'Base game v1.2+ · No known conflicts',
+    downloadUrl:'#'
+  },
+  {
+    id:'hardcore-tweaks',
+    title:'Hardcore Survival Tweaks',
+    version:'v0.9.0',
+    platform:'[Your Game]',
+    date:'2025-12-11',
+    tags:['Gameplay','Difficulty'],
+    summary:'Tighter resource scarcity, harsher weather penalties, and smarter enemy AI for players who want the game to fight back.',
+    changelog:[
+      {type:'add', text:'Hunger and thirst now affect stamina regen'},
+      {type:'change', text:'Enemies flank instead of charging in a straight line'},
+      {type:'fix', text:'Fixed sleeping bags healing more than intended'}
+    ],
+    requires:'Base game v1.5+ · Not compatible with Easy Mode mods',
+    downloadUrl:'#'
+  }
+];
+
+/* ===================== rendering ===================== */
+const grid = document.getElementById('releases');
+
+function escapeHtml(str){
+  return String(str).replace(/[&<>"']/g, s => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[s]));
+}
+
+function changelogHtml(entries){
+  const symbol = {add:'+', fix:'\u2212', change:'~'};
+  const cls = {add:'diff-add', fix:'diff-fix', change:'diff-change'};
+  return entries.map(e => `
+    <li class="${cls[e.type] || 'diff-change'}"><span class="sym">${symbol[e.type] || '~'}</span>${escapeHtml(e.text)}</li>
+  `).join('');
+}
+
+function cardHtml(mod, idx){
+  const coverClass = `cover-${idx % 4}`;
+  const initials = mod.title.split(' ').map(w => w[0]).slice(0,2).join('');
+  return `
+    <article class="card" data-id="${mod.id}" tabindex="0" role="button" aria-expanded="false">
+      <div class="cover ${coverClass}"><span>${escapeHtml(initials)}</span></div>
+      <div class="card-body">
+        <div class="eyebrow">
+          <span class="ver">${escapeHtml(mod.version)}</span>
+          <span>·</span>
+          <span>${escapeHtml(mod.date)}</span>
+          <span class="platform-tag">${escapeHtml(mod.platform)}</span>
+        </div>
+        <h3>${escapeHtml(mod.title)}</h3>
+        <p class="summary">${escapeHtml(mod.summary)}</p>
+        <div class="tags">
+          ${mod.tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('')}
+        </div>
+        <p class="expand-hint" style="margin-top:12px;">click to expand ↓</p>
+        <div class="detail">
+          <div class="detail-inner">
+            <ul class="changelog">${changelogHtml(mod.changelog)}</ul>
+            <p class="requires">${escapeHtml(mod.requires)}</p>
+            <a class="dl-btn" href="${mod.downloadUrl}" onclick="event.stopPropagation()">Download</a>
+          </div>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function render(){
+  grid.innerHTML = MODS.length
+    ? MODS.map((m, i) => cardHtml(m, i)).join('')
+    : `<p class="empty">No releases yet — add one to the MODS list above.</p>`;
+}
+
+grid.addEventListener('click', e => {
+  const card = e.target.closest('.card');
+  if(!card) return;
+  const expanded = card.classList.toggle('expanded');
+  card.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+});
+grid.addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' '){
+    const card = e.target.closest('.card');
+    if(card){ e.preventDefault(); card.click(); }
+  }
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+render();
+</script>
+</body>
+</html>
