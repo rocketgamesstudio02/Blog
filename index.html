@@ -76,10 +76,21 @@
   .empty{font-family:var(--mono); color:var(--paper-dim); padding:40px 0; font-size:0.9rem;}
 
   .card{
+    position:relative;
     background:var(--panel); border:1px solid var(--line-strong); border-radius:var(--radius);
-    overflow:hidden; cursor:pointer; transition:transform .15s ease, border-color .15s ease;
+    overflow:hidden; cursor:pointer; transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
   }
   .card:hover{transform:translateY(-3px); border-color:var(--copper);}
+  .card.latest{
+    border-color:var(--add);
+    box-shadow:0 0 0 1px var(--add), 0 0 24px rgba(111,207,123,0.18);
+  }
+  .badge-newest{
+    position:absolute; top:10px; right:10px; z-index:2;
+    background:var(--add); color:var(--ink); font-family:var(--mono);
+    font-size:0.64rem; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    padding:4px 10px; border-radius:2px;
+  }
 
   .cover{
     height:120px; display:flex; align-items:center; justify-content:center;
@@ -220,6 +231,7 @@
 </footer>
 
 <script>
+// Set isLatestUpdate: true on exactly one mod to show the green "Newest" highlight
 const MODS = [
   {
     id: 'royal-menu-1',
@@ -227,6 +239,7 @@ const MODS = [
     version: 'v1.0',
     platform: 'BitLife 3.24',
     date: '2026-07-28',
+    isLatestUpdate: true,
     changelog: [
       {
         type: 'add',
@@ -263,8 +276,11 @@ function changelogHtml(entries){
 function cardHtml(mod, idx){
   const coverClass = `cover-${idx % 4}`;
   const initials = mod.title.split(' ').map(w => w[0]).slice(0,2).join('');
+  const latestClass = mod.isLatestUpdate ? ' latest' : '';
+  const latestBadge = mod.isLatestUpdate ? '<span class="badge-newest">Newest</span>' : '';
   return `
-    <article class="card" data-id="${mod.id}" tabindex="0" role="button" aria-expanded="false">
+    <article class="card${latestClass}" data-id="${mod.id}" tabindex="0" role="button" aria-expanded="false">
+      ${latestBadge}
       <div class="cover ${coverClass}"><span>${escapeHtml(initials)}</span></div>
       <div class="card-body">
         <div class="eyebrow">
@@ -274,7 +290,6 @@ function cardHtml(mod, idx){
           <span class="platform-tag">${escapeHtml(mod.platform)}</span>
         </div>
         <h3>${escapeHtml(mod.title)}</h3>
-        
         <p class="expand-hint" style="margin-top:12px;">click to expand ↓</p>
         <div class="detail">
           <div class="detail-inner">
