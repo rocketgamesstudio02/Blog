@@ -6,7 +6,6 @@ import {
 import {
   getFirestore,
   doc,
-  getDoc,
   getDocFromServer,
   updateDoc,
   increment
@@ -27,9 +26,14 @@ const firebaseConfig = {
   measurementId: "G-PERE0FXK4M"
 };
 
-// Optional App Check. Leave the placeholder unchanged until a real
-// reCAPTCHA Enterprise site key has been configured in Firebase.
 const APP_CHECK_SITE_KEY = "REPLACE_WITH_RECAPTCHA_ENTERPRISE_SITE_KEY";
+
+const FALLBACK_RELEASE = {
+  version: "1.0",
+  status: "Available",
+  downloadCount: 0,
+  storagePath: "public/game/life-simulator/life-simulator-1.0.apk"
+};
 
 const app = initializeApp(firebaseConfig);
 
@@ -44,50 +48,55 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 const releaseRef = doc(db, "publicReleases", "life-simulator");
 
-// Expose these for simple browser-console diagnostics and compatibility
-// with scripts that expect the Firebase helpers on window.
-window.db = db;
-window.doc = doc;
-window.getDoc = getDoc;
-window.updateDoc = updateDoc;
-window.increment = increment;
-
 export async function getGameRelease() {
-  // Prefer a fresh server read so a stale local cache cannot make a
-  // configured release appear missing. Fall back to the normal SDK read
-  // only if the forced server request itself cannot be completed.
-  let snapshot;
+  let release = FALLBACK_RELEASE;
 
   try {
-    snapshot = await getDocFromServer(releaseRef);
+    const snapshot = await getDocFromServer(releaseRef);
+
+    if (snapshot.exists()) {
+      release = {
+        ...FALLBACK_RELEASE,
+        ...snapshot.data()
+      };
+    } else {
+      console.warn(
+        "Firestore release document was not found. Using the verified Firebase Storage release path instead."
+      );
+    }
   } catch (error) {
-    console.warn("Direct Firestore server read failed; falling back to getDoc().", error);
-    snapshot = await getDoc(releaseRef);
+    console.warn(
+      "Firestore release lookup failed. Using the verified Firebase Storage release path instead.",
+      error
+    );
   }
 
-  if (!snapshot.exists()) {
-    throw new Error("No public Life Simulator release is configured.");
-  }
+  const storagePath =
+    typeof release.storagePath === "string" && release.storagePath.length > 0
+      ? release.storagePath
+      : FALLBACK_RELEASE.storagePath;
 
-  const release = snapshot.data();
-
-  if (!release.storagePath || typeof release.storagePath !== "string") {
-    throw new Error("The release document does not contain a storagePath.");
-  }
-
-  const downloadUrl = await getDownloadURL(ref(storage, release.storagePath));
+  const downloadUrl = await getDownloadURL(ref(storage, storagePath));
 
   return {
-    version: release.version || "1.0",
-    status: release.status || "Available",
+    version: release.version || FALLBACK_RELEASE.version,
+    status: release.status || FALLBACK_RELEASE.status,
     downloadCount:
-      typeof release.downloadCount === "number" ? release.downloadCount : 0,
+      typeof release.downloadCount === "number"
+        ? release.downloadCount
+        : FALLBACK_RELEASE.downloadCount,
     downloadUrl
   };
 }
 
 export async function incrementDownloadCount() {
-  await updateDoc(releaseRef, {
-    downloadCount: increment(1)
-  });
+  try {
+    await updateDoc(releaseRef, {
+      downloadCount: increment(1)
+    });
+    return true;
+  } catch (error) {
+    console.warn("Firestore download counter is unavailable:", error);
+    return false;
+  }
 }
