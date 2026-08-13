@@ -1,0 +1,27 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /publicReleases/{releaseId} {
+      allow read: if true;
+
+      // Public clients may ONLY increment downloadCount by exactly one.
+      // They cannot change version, status, storagePath, or any other field.
+      allow update: if
+        releaseId == "life-simulator"
+        && request.resource.data.diff(resource.data).affectedKeys()
+             .hasOnly(["downloadCount"])
+        && request.resource.data.downloadCount is number
+        && resource.data.downloadCount is number
+        && request.resource.data.downloadCount
+             == resource.data.downloadCount + 1;
+
+      allow create, delete: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
