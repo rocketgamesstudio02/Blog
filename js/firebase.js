@@ -39,13 +39,18 @@ if (!APP_CHECK_SITE_KEY.startsWith("REPLACE_")) {
 const storage = getStorage(app);
 
 export async function getGameRelease() {
-  const downloadUrl = await getDownloadURL(
-    ref(storage, GAME_RELEASE.storagePath)
-  );
+  const downloadUrl = await getDownloadURL(ref(storage, GAME_RELEASE.storagePath));
 
   return {
     version: GAME_RELEASE.version,
     status: GAME_RELEASE.status,
+    downloadCount: 0,
     downloadUrl
   };
+}
+
+// Kept only for compatibility with the current main.js download flow.
+// The website no longer records or displays a download counter.
+export async function incrementDownloadCount() {
+  return false;
 }
