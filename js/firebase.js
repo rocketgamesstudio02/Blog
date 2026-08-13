@@ -4,13 +4,6 @@ import {
   ReCaptchaEnterpriseProvider
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app-check.js";
 import {
-  getFirestore,
-  doc,
-  getDocFromServer,
-  updateDoc,
-  increment
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-import {
   getStorage,
   ref,
   getDownloadURL
@@ -28,10 +21,9 @@ const firebaseConfig = {
 
 const APP_CHECK_SITE_KEY = "REPLACE_WITH_RECAPTCHA_ENTERPRISE_SITE_KEY";
 
-const FALLBACK_RELEASE = {
+const GAME_RELEASE = {
   version: "1.0",
   status: "Available",
-  downloadCount: 0,
   storagePath: "public/game/life-simulator/life-simulator-1.0.apk"
 };
 
@@ -44,59 +36,16 @@ if (!APP_CHECK_SITE_KEY.startsWith("REPLACE_")) {
   });
 }
 
-const db = getFirestore(app);
 const storage = getStorage(app);
-const releaseRef = doc(db, "publicReleases", "life-simulator");
 
 export async function getGameRelease() {
-  let release = FALLBACK_RELEASE;
-
-  try {
-    const snapshot = await getDocFromServer(releaseRef);
-
-    if (snapshot.exists()) {
-      release = {
-        ...FALLBACK_RELEASE,
-        ...snapshot.data()
-      };
-    } else {
-      console.warn(
-        "Firestore release document was not found. Using the verified Firebase Storage release path instead."
-      );
-    }
-  } catch (error) {
-    console.warn(
-      "Firestore release lookup failed. Using the verified Firebase Storage release path instead.",
-      error
-    );
-  }
-
-  const storagePath =
-    typeof release.storagePath === "string" && release.storagePath.length > 0
-      ? release.storagePath
-      : FALLBACK_RELEASE.storagePath;
-
-  const downloadUrl = await getDownloadURL(ref(storage, storagePath));
+  const downloadUrl = await getDownloadURL(
+    ref(storage, GAME_RELEASE.storagePath)
+  );
 
   return {
-    version: release.version || FALLBACK_RELEASE.version,
-    status: release.status || FALLBACK_RELEASE.status,
-    downloadCount:
-      typeof release.downloadCount === "number"
-        ? release.downloadCount
-        : FALLBACK_RELEASE.downloadCount,
+    version: GAME_RELEASE.version,
+    status: GAME_RELEASE.status,
     downloadUrl
   };
-}
-
-export async function incrementDownloadCount() {
-  try {
-    await updateDoc(releaseRef, {
-      downloadCount: increment(1)
-    });
-    return true;
-  } catch (error) {
-    console.warn("Firestore download counter is unavailable:", error);
-    return false;
-  }
 }
