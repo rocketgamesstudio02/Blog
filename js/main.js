@@ -1,10 +1,6 @@
-import { getGameRelease, incrementDownloadCount } from "./firebase.js";
+import { getGameRelease } from "./firebase.js";
 
 const $ = (selector, root = document) => root.querySelector(selector);
-
-function formatCount(value) {
-  return new Intl.NumberFormat().format(value);
-}
 
 function setupNavigation() {
   const button = $("#menuToggle");
@@ -26,7 +22,6 @@ function setupNavigation() {
 async function setupDownload() {
   const button = $("#gameDownload");
   const version = $("#gameVersion");
-  const downloadCount = $("#downloadCount");
 
   button.disabled = true;
   button.textContent = "Checking release…";
@@ -34,28 +29,18 @@ async function setupDownload() {
   try {
     const release = await getGameRelease();
 
-    version.textContent = release.version || "1.0";
-    downloadCount.textContent = formatCount(release.downloadCount);
+    if (version) {
+      version.textContent = release.version || "1.0";
+    }
+
     button.textContent = "Download";
     button.disabled = false;
 
-    button.addEventListener("click", async () => {
-      // Open immediately so browsers don't block the download navigation.
-      const url = release.downloadUrl;
-
-      // Increment separately. Failure should never stop a valid download.
-      try {
-        await incrementDownloadCount();
-        release.downloadCount += 1;
-        downloadCount.textContent = formatCount(release.downloadCount);
-      } catch (error) {
-        console.warn("Could not update download count:", error);
-      }
-
-      window.location.assign(url);
+    button.addEventListener("click", () => {
+      window.location.assign(release.downloadUrl);
     });
   } catch (error) {
-    console.error(error);
+    console.error("Failed to load game download:", error);
     button.textContent = "Download unavailable";
   }
 }
@@ -63,5 +48,9 @@ async function setupDownload() {
 document.addEventListener("DOMContentLoaded", () => {
   setupNavigation();
   setupDownload();
-  $("#year").textContent = new Date().getFullYear();
+
+  const year = $("#year");
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
 });
