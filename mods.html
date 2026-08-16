@@ -39,7 +39,7 @@
     <div class="mods-hero">
       <div class="mods-hero-copy">
         <h1>Mods</h1>
-        <p>Download release builds from the links below.</p>
+        <p>Choose a game first, then browse its available mod versions.</p>
       </div>
       <img class="mods-icon" src="./assets/mods-icon.png" alt="Rocket Games mods icon">
     </div>
@@ -49,7 +49,23 @@
       <a class="back-link" href="./index.html">Back to App</a>
     </div>
 
-    <section class="mods-release-list" aria-label="Mod releases">
+    <section id="gameSelectorView" aria-label="Choose a game">
+      <div class="section-caption">Choose a game</div>
+      <div class="game-selector" id="gameSelector"></div>
+    </section>
+
+    <section id="gameReleaseView" aria-label="Game mod releases" hidden>
+      <div class="selected-game-bar">
+        <button class="back-link game-back-button" id="backToGames" type="button">← Games</button>
+        <div class="selected-game-title">
+          <img id="selectedGameIcon" src="" alt="">
+          <div>
+            <span>Mod releases</span>
+            <h2 id="selectedGameName"></h2>
+          </div>
+        </div>
+      </div>
+
       <div class="mod-grid mods-page-grid" id="modGrid" aria-live="polite"></div>
     </section>
   </main>
