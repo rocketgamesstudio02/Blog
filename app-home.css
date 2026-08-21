@@ -47,6 +47,22 @@
   line-height: 1.7;
 }
 
+.home-page .store-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.home-page .whats-new-button {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid #ccd5e3;
+}
+
+.home-page .whats-new-button:hover {
+  background: #f7f9fc;
+}
+
 .home-page .app-meta-row {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid var(--line);
@@ -84,9 +100,70 @@
   max-width: 930px;
 }
 
+.home-page .release-dialog {
+  width: min(980px, calc(100vw - 28px));
+  max-height: min(86vh, 900px);
+  padding: 0;
+  border: 0;
+  border-radius: 26px;
+  overflow: hidden;
+  background: #f8faff;
+  color: var(--text);
+  box-shadow: 0 30px 90px rgba(15, 23, 42, .24);
+}
+
+.home-page .release-dialog::backdrop {
+  background: rgba(17, 24, 39, .52);
+  backdrop-filter: blur(4px);
+}
+
+.home-page .release-dialog-shell {
+  display: flex;
+  flex-direction: column;
+  max-height: min(86vh, 900px);
+}
+
+.home-page .release-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 26px 18px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, .92);
+}
+
+.home-page .release-dialog-header h2 {
+  margin: 4px 0 0;
+  font-size: clamp(1.45rem, 4vw, 2rem);
+}
+
+.home-page .release-dialog-close {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border: 1px solid #d6deea;
+  border-radius: 12px;
+  background: #fff;
+  color: #445066;
+  font: inherit;
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.home-page .release-dialog-close:hover {
+  background: #f1f4f8;
+}
+
+.home-page .release-dialog-body {
+  overflow-y: auto;
+  padding: 22px 26px 26px;
+}
+
 .home-page .release-intro {
   max-width: 840px;
-  margin-bottom: 22px;
+  margin: 0 0 22px;
   color: #4e596b;
   font-size: 1rem;
   line-height: 1.7;
@@ -102,7 +179,7 @@
   padding: 22px;
   border: 1px solid #dfe5ef;
   border-radius: 22px;
-  background: rgba(255, 255, 255, .74);
+  background: rgba(255, 255, 255, .82);
   box-shadow: 0 14px 34px rgba(22, 31, 48, .06);
 }
 
@@ -255,6 +332,14 @@
     border-radius: 22px;
   }
 
+  .home-page .store-actions {
+    flex-direction: column;
+  }
+
+  .home-page .store-actions .store-button {
+    width: 100%;
+  }
+
   .home-page .app-meta-row {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -273,6 +358,24 @@
 
   .home-page .content-section {
     padding-top: 36px;
+  }
+
+  .home-page .release-dialog {
+    width: calc(100vw - 18px);
+    max-height: 90vh;
+    border-radius: 20px;
+  }
+
+  .home-page .release-dialog-shell {
+    max-height: 90vh;
+  }
+
+  .home-page .release-dialog-header {
+    padding: 18px 18px 14px;
+  }
+
+  .home-page .release-dialog-body {
+    padding: 18px;
   }
 
   .home-page .release-grid {
