@@ -96,7 +96,6 @@
       </button>
       <div class="nav-links" id="navLinks">
         <a href="#app">App</a>
-        <a href="#whats-new">What's New</a>
         <a href="#about">About</a>
         <a href="#data-safety">Data Safety</a>
         <a href="./mods.html">Mods</a>
@@ -127,6 +126,7 @@
             </p>
             <div class="store-actions">
               <button class="store-button primary" id="gameDownload" type="button">Download Rocket Life</button>
+              <button class="store-button whats-new-button" id="whatsNewButton" type="button" aria-haspopup="dialog" aria-controls="whatsNewDialog">What's New</button>
             </div>
           </div>
         </div>
@@ -137,72 +137,6 @@
           <div class="meta-pill"><span class="meta-label">Platform</span><strong>Android</strong></div>
         </div>
       </article>
-    </section>
-
-    <section class="shell content-section whats-new-section" id="whats-new">
-      <div class="section-header">
-        <div>
-          <div class="section-caption">What's new</div>
-          <h2>Rocket Life — Version 1.1</h2>
-        </div>
-      </div>
-
-      <div class="release-intro">
-        <p>A bigger world, new ways to build your legacy, and more ways to live your life.</p>
-      </div>
-
-      <div class="release-grid">
-        <article class="release-card">
-          <h3><span aria-hidden="true">🏀</span> Professional Sports</h3>
-          <ul>
-            <li>Introducing <strong>Professional Sports Careers</strong> with professional Basketball and Soccer.</li>
-            <li>Join teams, train your skills, and build your reputation as an athlete.</li>
-            <li>Compete across expanded leagues featuring many unique teams and logos.</li>
-            <li>Explore teams around the league and <strong>request trades</strong> to pursue new opportunities.</li>
-            <li>Improve individual skills through focused training.</li>
-            <li>Chase championships, awards, and an unforgettable sports career.</li>
-            <li>Retire from professional sports and look back on the legacy you built.</li>
-          </ul>
-        </article>
-
-        <article class="release-card">
-          <h3><span aria-hidden="true">🌟</span> Fame &amp; Social Media</h3>
-          <ul>
-            <li>Introducing deeper <strong>Fame and Social Media progression</strong>.</li>
-            <li>Grow your following as your character becomes more famous.</li>
-            <li>Turn success in your career and public life into a growing online audience.</li>
-            <li>Build your character from an ordinary person into a recognizable celebrity.</li>
-          </ul>
-        </article>
-
-        <article class="release-card">
-          <h3><span aria-hidden="true">🔫</span> Expanded Illegal Market</h3>
-          <p class="release-card-lead">The underground just got much bigger.</p>
-          <ul>
-            <li>Explore dedicated illegal markets for <strong>guns, substances, stolen vehicles, stolen artworks, and stolen jewelry</strong>.</li>
-            <li>Discover a wider selection of illegal goods with different prices and risks.</li>
-            <li>Stolen vehicles, artwork, and jewelry can become part of your collection of assets.</li>
-            <li>Deal with consequences including confiscation, fines, charges, and possible arrest.</li>
-          </ul>
-        </article>
-
-        <article class="release-card">
-          <h3><span aria-hidden="true">✨</span> Other Improvements</h3>
-          <ul>
-            <li>Improved layouts and navigation across the game.</li>
-            <li>Improved the main interface for different phone and screen sizes.</li>
-            <li>Improved <strong>Manage Lives</strong> and button scaling.</li>
-            <li>Improved sports training and retirement interfaces.</li>
-            <li>Improved Sandbox usability.</li>
-            <li>Large money values are now easier to read throughout dialogs.</li>
-            <li>Improved icons and visual presentation across several features.</li>
-            <li>Improved community and Developer links.</li>
-            <li>Various gameplay balancing, interface improvements, and quality-of-life changes.</li>
-          </ul>
-        </article>
-      </div>
-
-      <p class="release-cta"><strong>Update to Version 1.1 and take your Rocket Life further than ever before.</strong></p>
     </section>
 
     <section class="shell content-section" id="about">
@@ -301,6 +235,75 @@
       </div>
     </section>
   </main>
+
+  <dialog class="release-dialog" id="whatsNewDialog" aria-labelledby="whatsNewTitle">
+    <div class="release-dialog-shell">
+      <div class="release-dialog-header">
+        <div>
+          <div class="section-caption">What's new</div>
+          <h2 id="whatsNewTitle">Rocket Life — Version 1.1</h2>
+        </div>
+        <button class="release-dialog-close" id="whatsNewClose" type="button" aria-label="Close What's New dialog">×</button>
+      </div>
+
+      <div class="release-dialog-body">
+        <p class="release-intro">A bigger world, new ways to build your legacy, and more ways to live your life.</p>
+
+        <div class="release-grid">
+          <article class="release-card">
+            <h3><span aria-hidden="true">🏀</span> Professional Sports</h3>
+            <ul>
+              <li>Introducing <strong>Professional Sports Careers</strong> with professional Basketball and Soccer.</li>
+              <li>Join teams, train your skills, and build your reputation as an athlete.</li>
+              <li>Compete across expanded leagues featuring many unique teams and logos.</li>
+              <li>Explore teams around the league and <strong>request trades</strong> to pursue new opportunities.</li>
+              <li>Improve individual skills through focused training.</li>
+              <li>Chase championships, awards, and an unforgettable sports career.</li>
+              <li>Retire from professional sports and look back on the legacy you built.</li>
+            </ul>
+          </article>
+
+          <article class="release-card">
+            <h3><span aria-hidden="true">🌟</span> Fame &amp; Social Media</h3>
+            <ul>
+              <li>Introducing deeper <strong>Fame and Social Media progression</strong>.</li>
+              <li>Grow your following as your character becomes more famous.</li>
+              <li>Turn success in your career and public life into a growing online audience.</li>
+              <li>Build your character from an ordinary person into a recognizable celebrity.</li>
+            </ul>
+          </article>
+
+          <article class="release-card">
+            <h3><span aria-hidden="true">🔫</span> Expanded Illegal Market</h3>
+            <p class="release-card-lead">The underground just got much bigger.</p>
+            <ul>
+              <li>Explore dedicated illegal markets for <strong>guns, substances, stolen vehicles, stolen artworks, and stolen jewelry</strong>.</li>
+              <li>Discover a wider selection of illegal goods with different prices and risks.</li>
+              <li>Stolen vehicles, artwork, and jewelry can become part of your collection of assets.</li>
+              <li>Deal with consequences including confiscation, fines, charges, and possible arrest.</li>
+            </ul>
+          </article>
+
+          <article class="release-card">
+            <h3><span aria-hidden="true">✨</span> Other Improvements</h3>
+            <ul>
+              <li>Improved layouts and navigation across the game.</li>
+              <li>Improved the main interface for different phone and screen sizes.</li>
+              <li>Improved <strong>Manage Lives</strong> and button scaling.</li>
+              <li>Improved sports training and retirement interfaces.</li>
+              <li>Improved Sandbox usability.</li>
+              <li>Large money values are now easier to read throughout dialogs.</li>
+              <li>Improved icons and visual presentation across several features.</li>
+              <li>Improved community and Developer links.</li>
+              <li>Various gameplay balancing, interface improvements, and quality-of-life changes.</li>
+            </ul>
+          </article>
+        </div>
+
+        <p class="release-cta"><strong>Update to Version 1.1 and take your Rocket Life further than ever before.</strong></p>
+      </div>
+    </div>
+  </dialog>
 
   <footer class="footer">
     <div class="shell footer-row">
