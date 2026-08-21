@@ -25,11 +25,11 @@ const APP_CHECK_SITE_KEY = "REPLACE_WITH_RECAPTCHA_ENTERPRISE_SITE_KEY";
 // Keep these fallback values in sync with the currently published APK.
 // Firebase metadata automatically replaces them when the metadata request succeeds.
 const GAME_RELEASE = {
-  version: "1.0",
+  version: "1.1",
   status: "Available",
-  storagePath: "public/game/life-simulator/life-simulator-1.0.apk",
-  fallbackUpdatedAt: "2026-08-14T00:00:00Z",
-  fallbackSizeBytes: 20667433
+  storagePath: "public/game/life-simulator/life-simulator-1.1.apk",
+  fallbackUpdatedAt: "2026-08-21T00:00:00Z",
+  fallbackSizeBytes: 22775071
 };
 
 const app = initializeApp(firebaseConfig);
