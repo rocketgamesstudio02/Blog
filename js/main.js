@@ -21,6 +21,37 @@ function setupNavigation() {
   });
 }
 
+function setupWhatsNewDialog() {
+  const openButton = $("#whatsNewButton");
+  const dialog = $("#whatsNewDialog");
+  const closeButton = $("#whatsNewClose");
+
+  if (!openButton || !dialog || !closeButton) return;
+
+  openButton.addEventListener("click", () => {
+    if (typeof dialog.showModal === "function") {
+      dialog.showModal();
+    } else {
+      dialog.setAttribute("open", "");
+    }
+  });
+
+  closeButton.addEventListener("click", () => {
+    dialog.close();
+  });
+
+  dialog.addEventListener("click", (event) => {
+    const rect = dialog.getBoundingClientRect();
+    const clickedBackdrop =
+      event.clientX < rect.left ||
+      event.clientX > rect.right ||
+      event.clientY < rect.top ||
+      event.clientY > rect.bottom;
+
+    if (clickedBackdrop) dialog.close();
+  });
+}
+
 function formatBytes(bytes) {
   if (!Number.isFinite(bytes) || bytes <= 0) return "Not available";
 
@@ -62,7 +93,6 @@ async function setupDownload() {
   button.disabled = true;
   button.textContent = "Checking release…";
 
-  // Never leave metadata fields stuck indefinitely.
   const loadingTimeout = window.setTimeout(() => {
     if (lastUpdated?.textContent.includes("Checking")) lastUpdated.textContent = "Not available";
     if (appSize?.textContent.includes("Checking")) appSize.textContent = "Not available";
@@ -95,6 +125,7 @@ async function setupDownload() {
 
 document.addEventListener("DOMContentLoaded", () => {
   setupNavigation();
+  setupWhatsNewDialog();
   setupDownload();
 
   const year = $("#year");
