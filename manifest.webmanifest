@@ -1,7 +1,7 @@
 {
-  "name": "Rocket Games — Life Simulator",
-  "short_name": "Life Simulator",
-  "description": "Life Simulator by Rocket Games, a free solo-developed Android life simulation game.",
+  "name": "Rocket Life — Rocket Games",
+  "short_name": "Rocket Life",
+  "description": "Rocket Life by Rocket Games, a free solo-developed Android life simulation game.",
   "start_url": "/Blog/",
   "scope": "/Blog/",
   "display": "standalone",
