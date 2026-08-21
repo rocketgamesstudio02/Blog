@@ -70,7 +70,7 @@ async function setupDownload() {
 
   try {
     const release = await getGameRelease();
-    const releaseVersion = release.version || "1.0";
+    const releaseVersion = release.version || "1.1";
 
     if (version) version.textContent = releaseVersion;
     if (detailsVersion) detailsVersion.textContent = releaseVersion;
