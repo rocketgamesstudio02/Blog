@@ -62,6 +62,12 @@ async function setupDownload() {
   button.disabled = true;
   button.textContent = "Checking release…";
 
+  // Never leave metadata fields stuck indefinitely.
+  const loadingTimeout = window.setTimeout(() => {
+    if (lastUpdated?.textContent.includes("Checking")) lastUpdated.textContent = "Not available";
+    if (appSize?.textContent.includes("Checking")) appSize.textContent = "Not available";
+  }, 8000);
+
   try {
     const release = await getGameRelease();
     const releaseVersion = release.version || "1.0";
@@ -82,6 +88,8 @@ async function setupDownload() {
     button.textContent = "Download unavailable";
     if (lastUpdated) lastUpdated.textContent = "Not available";
     if (appSize) appSize.textContent = "Not available";
+  } finally {
+    window.clearTimeout(loadingTimeout);
   }
 }
 
