@@ -6,7 +6,8 @@ import {
 import {
   getStorage,
   ref,
-  getDownloadURL
+  getDownloadURL,
+  getMetadata
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
 
 const firebaseConfig = {
@@ -39,17 +40,23 @@ if (!APP_CHECK_SITE_KEY.startsWith("REPLACE_")) {
 const storage = getStorage(app);
 
 export async function getGameRelease() {
-  const downloadUrl = await getDownloadURL(ref(storage, GAME_RELEASE.storagePath));
+  const fileRef = ref(storage, GAME_RELEASE.storagePath);
+  const [downloadUrl, metadata] = await Promise.all([
+    getDownloadURL(fileRef),
+    getMetadata(fileRef)
+  ]);
 
   return {
     version: GAME_RELEASE.version,
     status: GAME_RELEASE.status,
     downloadCount: 0,
-    downloadUrl
+    downloadUrl,
+    sizeBytes: Number(metadata.size || 0),
+    updatedAt: metadata.updated || metadata.timeCreated || null
   };
 }
 
-// Kept only for compatibility with the current main.js download flow.
+// Kept only for compatibility with older website code.
 // The website no longer records or displays a download counter.
 export async function incrementDownloadCount() {
   return false;
