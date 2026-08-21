@@ -22,10 +22,14 @@ const firebaseConfig = {
 
 const APP_CHECK_SITE_KEY = "REPLACE_WITH_RECAPTCHA_ENTERPRISE_SITE_KEY";
 
+// Keep these fallback values in sync with the currently published APK.
+// Firebase metadata automatically replaces them when the metadata request succeeds.
 const GAME_RELEASE = {
   version: "1.0",
   status: "Available",
-  storagePath: "public/game/life-simulator/life-simulator-1.0.apk"
+  storagePath: "public/game/life-simulator/life-simulator-1.0.apk",
+  fallbackUpdatedAt: "2026-08-14T00:00:00Z",
+  fallbackSizeBytes: 20667433
 };
 
 const app = initializeApp(firebaseConfig);
@@ -39,20 +43,40 @@ if (!APP_CHECK_SITE_KEY.startsWith("REPLACE_")) {
 
 const storage = getStorage(app);
 
+function withTimeout(promise, milliseconds) {
+  return Promise.race([
+    promise,
+    new Promise((_, reject) => {
+      window.setTimeout(() => reject(new Error("Firebase request timed out")), milliseconds);
+    })
+  ]);
+}
+
 export async function getGameRelease() {
   const fileRef = ref(storage, GAME_RELEASE.storagePath);
-  const [downloadUrl, metadata] = await Promise.all([
-    getDownloadURL(fileRef),
-    getMetadata(fileRef)
-  ]);
+
+  // The download URL is required for the button. Metadata is optional and
+  // must never prevent the release from loading.
+  const downloadUrl = await withTimeout(getDownloadURL(fileRef), 10000);
+
+  let sizeBytes = GAME_RELEASE.fallbackSizeBytes;
+  let updatedAt = GAME_RELEASE.fallbackUpdatedAt;
+
+  try {
+    const metadata = await withTimeout(getMetadata(fileRef), 6000);
+    sizeBytes = Number(metadata.size || sizeBytes);
+    updatedAt = metadata.updated || metadata.timeCreated || updatedAt;
+  } catch (error) {
+    console.warn("Firebase metadata unavailable; using release fallback values.", error);
+  }
 
   return {
     version: GAME_RELEASE.version,
     status: GAME_RELEASE.status,
     downloadCount: 0,
     downloadUrl,
-    sizeBytes: Number(metadata.size || 0),
-    updatedAt: metadata.updated || metadata.timeCreated || null
+    sizeBytes,
+    updatedAt
   };
 }
 
