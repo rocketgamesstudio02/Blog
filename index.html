@@ -52,9 +52,7 @@
         "url": "https://rocketgamesstudio02.github.io/Blog/",
         "name": "Rocket Games",
         "alternateName": "Rocket Games Studio",
-        "publisher": {
-          "@id": "https://rocketgamesstudio02.github.io/Blog/#organization"
-        }
+        "publisher": { "@id": "https://rocketgamesstudio02.github.io/Blog/#organization" }
       },
       {
         "@type": "SoftwareApplication",
@@ -70,17 +68,9 @@
         "softwareVersion": "1.0",
         "contentRating": "18+",
         "isAccessibleForFree": true,
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD"
-        },
-        "author": {
-          "@id": "https://rocketgamesstudio02.github.io/Blog/#organization"
-        },
-        "publisher": {
-          "@id": "https://rocketgamesstudio02.github.io/Blog/#organization"
-        }
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@id": "https://rocketgamesstudio02.github.io/Blog/#organization" },
+        "publisher": { "@id": "https://rocketgamesstudio02.github.io/Blog/#organization" }
       }
     ]
   }
@@ -90,21 +80,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./app-home.css">
 </head>
-<body>
+<body class="home-page">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header">
     <nav class="nav shell" aria-label="Primary navigation">
       <div class="nav-title">Rocket Games</div>
-
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
         <span class="sr-only">Open navigation</span>
       </button>
-
       <div class="nav-links" id="navLinks">
         <a href="#app">App</a>
+        <a href="#about">About</a>
+        <a href="#data-safety">Data Safety</a>
         <a href="./mods.html">Mods</a>
         <a href="#contact">Contact</a>
       </div>
@@ -113,133 +104,113 @@
 
   <main id="main">
     <section class="shell page-top">
-      <div class="section-caption">Featured app</div>
-
+      <div class="section-caption">Featured Android game</div>
       <article class="app-store-card" id="app">
         <div class="app-summary">
           <img class="app-icon-image" src="./assets/app-icon.png" alt="Rocket Life app icon" width="512" height="512">
-
           <div class="app-summary-copy">
             <div class="app-summary-top">
               <div>
                 <h1>Rocket Life</h1>
-                <p class="platform-label">Version <strong id="gameVersion">1.0</strong></p>
-                <p class="platform-label">Rocket Games · Android</p>
+                <p class="app-version-line">Version <strong id="gameVersion">1.0</strong></p>
+                <p class="publisher-line">Rocket Games · Android</p>
               </div>
               <span class="status-badge">Released</span>
             </div>
-
             <p class="app-description">
-              A free, solo-developed Android life simulation game where you guide a character through school,
-              careers, money, relationships, assets, health, crime, prison and major life events.
+              Build a life from childhood to old age in a detailed, choice-driven simulator. Study, work,
+              form relationships, manage money and assets, face health and legal consequences, and shape
+              a character whose decisions carry forward year after year.
             </p>
-
             <div class="store-actions">
               <button class="store-button primary" id="gameDownload" type="button">Download Rocket Life</button>
             </div>
           </div>
         </div>
 
-        <div class="app-meta-row">
-          <div class="meta-pill">
-            <span class="meta-label">Rated age</span>
-            <strong>18+</strong>
-          </div>
-          <div class="meta-pill">
-            <span class="meta-label">Price</span>
-            <strong>Free</strong>
-          </div>
-          <div class="meta-pill">
-            <span class="meta-label">Platform</span>
-            <strong>Android</strong>
-          </div>
+        <div class="app-meta-row" aria-label="App summary">
+          <div class="meta-pill"><span class="meta-label">Rated age</span><strong>18+</strong></div>
+          <div class="meta-pill"><span class="meta-label">Price</span><strong>Free</strong></div>
+          <div class="meta-pill"><span class="meta-label">Platform</span><strong>Android</strong></div>
         </div>
       </article>
     </section>
 
-    <section class="shell content-section">
+    <section class="shell content-section" id="about">
       <div class="section-header">
         <div>
           <div class="section-caption">About this game</div>
-          <h2>Shape a life, year by year</h2>
+          <h2>Your choices build the story</h2>
         </div>
       </div>
 
-      <div class="about-app-card">
-        <div class="about-tags">
-          <span>Free</span>
-          <span>Solo developed</span>
-          <span>Life simulation</span>
-          <span>Single player</span>
-          <span>Offline progress</span>
-          <span>Choice-based</span>
-        </div>
-
+      <div class="about-content">
         <p class="about-lead">
-          Live through childhood, school, adulthood and old age while making choices that affect
-          your character’s future. Build relationships, pursue careers, manage money, own assets,
-          take risks and deal with the consequences of every decision.
+          Rocket Life is a native Android life simulator built around long-term decisions rather than short,
+          disconnected events. Start a life, grow through school and adulthood, pursue work and education,
+          build relationships, manage finances and property, and deal with the consequences of what your
+          character chooses to do.
+        </p>
+        <p class="about-copy">
+          The simulation includes family and social relationships, education and careers, money and assets,
+          health, crime and prison systems, major life events, and character progression across an entire
+          lifetime. The game is independently developed by Rocket Games and is designed to keep expanding over time.
         </p>
 
-        <div class="playstore-points">
-          <article>
-            <strong>Guide your character’s life</strong>
-            <span>Study, work, build a family, manage health and make decisions that shape every year.</span>
-          </article>
-          <article>
-            <strong>Explore detailed life systems</strong>
-            <span>Relationships, finances, prison, crime, education, jobs, houses, vehicles and more.</span>
-          </article>
-          <article>
-            <strong>Experience long-term consequences</strong>
-            <span>Your choices carry forward into future years, affecting opportunities, stress, success and failure.</span>
-          </article>
+        <div class="app-details" aria-label="App details">
+          <div class="detail-row">
+            <span class="detail-label">Current version</span>
+            <span class="detail-value" id="detailsVersion">1.0</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Last updated</span>
+            <span class="detail-value" id="lastUpdated">Checking release…</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">App size</span>
+            <span class="detail-value" id="appSize">Checking release…</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-label">Developer</span>
+            <span class="detail-value">Rocket Games</span>
+          </div>
         </div>
+        <p class="version-note">Version information and file size are read from the current Firebase-hosted APK when available.</p>
       </div>
     </section>
 
-    <section class="shell content-section">
+    <section class="shell content-section data-safety-section" id="data-safety">
       <div class="section-header">
         <div>
-          <div class="section-caption">Main features</div>
-          <h2>What’s inside</h2>
+          <div class="section-caption">Data Safety</div>
+          <h2>How data is handled</h2>
         </div>
       </div>
 
-      <div class="feature-scroll-card">
-        <div class="feature-scroll" aria-label="Main features of the game">
-          <article class="feature-item">
-            <strong>Character Lives</strong>
-            <span>Family, relationships, aging, children, succession and long-term character progression.</span>
-          </article>
-          <article class="feature-item">
-            <strong>Education & Careers</strong>
-            <span>School, university, graduate education, qualifications, jobs, part-time work and promotions.</span>
-          </article>
-          <article class="feature-item">
-            <strong>Money & Assets</strong>
-            <span>Income, purchases, vehicles, homes, renovations, banks, markets and financial decisions.</span>
-          </article>
-          <article class="feature-item">
-            <strong>Relationships</strong>
-            <span>Parents, siblings, friends, dating, marriage, children, exes and NPC interactions.</span>
-          </article>
-          <article class="feature-item">
-            <strong>Activities</strong>
-            <span>Social activities, mind and body, nightlife, hobbies and choices throughout your life.</span>
-          </article>
-          <article class="feature-item">
-            <strong>Crime & Prison</strong>
-            <span>Crime, arrests, court cases, prison life, notoriety, parole, prison jobs and escape attempts.</span>
-          </article>
-          <article class="feature-item">
-            <strong>Health & Life Events</strong>
-            <span>Health, diseases, stress, scenarios, pregnancies, births, deaths and other life-changing events.</span>
-          </article>
-          <article class="feature-item">
-            <strong>Countries & Immigration</strong>
-            <span>Country-based life settings, cities, currencies, immigration and differences in local systems.</span>
-          </article>
+      <div class="safety-content">
+        <p class="safety-intro">
+          Rocket Life keeps core gameplay and save progress on your device. Some online services used by the app,
+          such as Firebase and advertising services, may process limited technical, diagnostic, consent, or
+          advertising-related information required to provide those features.
+        </p>
+
+        <div class="safety-list">
+          <div class="safety-item">
+            <span class="safety-icon" aria-hidden="true">✓</span>
+            <div><strong>Local game progress</strong><span>Your life simulation save data is stored on the device for normal gameplay.</span></div>
+          </div>
+          <div class="safety-item">
+            <span class="safety-icon" aria-hidden="true">↗</span>
+            <div><strong>Online services are limited to supported features</strong><span>Firebase may be used for app configuration, release delivery, or other online functions. Google advertising services may process device and ad-related information according to their own policies.</span></div>
+          </div>
+          <div class="safety-item">
+            <span class="safety-icon" aria-hidden="true">◎</span>
+            <div><strong>No account required to play</strong><span>The core game does not require creating a Rocket Games account before starting a life.</span></div>
+          </div>
+          <div class="safety-item">
+            <span class="safety-icon" aria-hidden="true">i</span>
+            <div><strong>Permissions and consent stay visible</strong><span>Android and supported consent dialogs remain the source of truth for permissions and advertising choices presented on your device.</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -251,7 +222,6 @@
           <h2>Feedback & links</h2>
         </div>
       </div>
-
       <div class="contact-card">
         <p>Bug reports, feedback and suggestions are welcome.</p>
         <div class="contact-links">
@@ -266,10 +236,7 @@
 
   <footer class="footer">
     <div class="shell footer-row">
-      <div>
-        <strong>Rocket Games</strong>
-        <span>Free Android games and mod releases.</span>
-      </div>
+      <div><strong>Rocket Games</strong><span>Free Android games and mod releases.</span></div>
       <p>© <span id="year"></span> Rocket Games</p>
     </div>
   </footer>
