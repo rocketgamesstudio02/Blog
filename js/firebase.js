@@ -9,6 +9,11 @@ import {
   getDownloadURL,
   getMetadata
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-storage.js";
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBS-0SKs7ATLoiGWDl6gBsoHpLH7AlJDsI",
@@ -22,14 +27,12 @@ const firebaseConfig = {
 
 const APP_CHECK_SITE_KEY = "REPLACE_WITH_RECAPTCHA_ENTERPRISE_SITE_KEY";
 
-// Keep these fallback values in sync with the currently published APK.
-// Firebase metadata automatically replaces them when the metadata request succeeds.
-const GAME_RELEASE = {
-  version: "1.1",
+const GAME_RELEASE_FALLBACK = {
+  version: "1.2",
   status: "Available",
-  storagePath: "public/game/life-simulator/life-simulator-1.1.apk",
-  fallbackUpdatedAt: "2026-08-21T00:00:00Z",
-  fallbackSizeBytes: 22775071
+  storagePath: "public/game/life-simulator/life-simulator-1.2.apk",
+  fallbackUpdatedAt: "2026-09-04T00:00:00Z",
+  fallbackSizeBytes: 0
 };
 
 const app = initializeApp(firebaseConfig);
@@ -42,6 +45,8 @@ if (!APP_CHECK_SITE_KEY.startsWith("REPLACE_")) {
 }
 
 const storage = getStorage(app);
+const db = getFirestore(app);
+let releaseDocumentPromise = null;
 
 function withTimeout(promise, milliseconds) {
   return Promise.race([
@@ -52,36 +57,64 @@ function withTimeout(promise, milliseconds) {
   ]);
 }
 
-export async function getGameRelease() {
-  const fileRef = ref(storage, GAME_RELEASE.storagePath);
+async function getReleaseDocument() {
+  if (!releaseDocumentPromise) {
+    releaseDocumentPromise = withTimeout(
+      getDoc(doc(db, "publicReleases", "life-simulator")),
+      8000
+    ).then((snapshot) => snapshot.exists() ? snapshot.data() : {})
+     .catch((error) => {
+       releaseDocumentPromise = null;
+       throw error;
+     });
+  }
+  return releaseDocumentPromise;
+}
 
-  // The download URL is required for the button. Metadata is optional and
-  // must never prevent the release from loading.
+export async function getGameRelease() {
+  let releaseDocument = {};
+  try {
+    releaseDocument = await getReleaseDocument();
+  } catch (error) {
+    console.warn("Firestore release document unavailable; using website fallbacks.", error);
+  }
+
+  const version = GAME_RELEASE_FALLBACK.version;
+  const status = GAME_RELEASE_FALLBACK.status;
+  const storagePath = GAME_RELEASE_FALLBACK.storagePath;
+  const fallbackUpdatedAt = releaseDocument.updatedAt ?? GAME_RELEASE_FALLBACK.fallbackUpdatedAt;
+  const fallbackSizeBytes = Number(
+    releaseDocument.sizeBytes ??
+    releaseDocument.fallbackSizeBytes ??
+    GAME_RELEASE_FALLBACK.fallbackSizeBytes
+  );
+
+  const fileRef = ref(storage, storagePath);
   const downloadUrl = await withTimeout(getDownloadURL(fileRef), 10000);
 
-  let sizeBytes = GAME_RELEASE.fallbackSizeBytes;
-  let updatedAt = GAME_RELEASE.fallbackUpdatedAt;
+  let sizeBytes = fallbackSizeBytes;
+  let updatedAt = fallbackUpdatedAt;
 
   try {
     const metadata = await withTimeout(getMetadata(fileRef), 6000);
     sizeBytes = Number(metadata.size || sizeBytes);
     updatedAt = metadata.updated || metadata.timeCreated || updatedAt;
   } catch (error) {
-    console.warn("Firebase metadata unavailable; using release fallback values.", error);
+    console.warn("Firebase Storage metadata unavailable; using release fallbacks.", error);
   }
 
   return {
-    version: GAME_RELEASE.version,
-    status: GAME_RELEASE.status,
-    downloadCount: 0,
+    ...releaseDocument,
+    version,
+    status,
+    storagePath,
+    downloadCount: Number(releaseDocument.downloadCount || 0),
     downloadUrl,
     sizeBytes,
     updatedAt
   };
 }
 
-// Kept only for compatibility with older website code.
-// The website no longer records or displays a download counter.
 export async function incrementDownloadCount() {
   return false;
 }
