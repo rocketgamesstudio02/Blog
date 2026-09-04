@@ -1,5 +1,3 @@
-import { getGameRelease } from "./firebase.js";
-
 const $ = (selector, root = document) => root.querySelector(selector);
 
 const FALLBACK_WHATS_NEW = [
@@ -204,6 +202,7 @@ async function setupRelease() {
   if (!button) return;
   button.disabled=true; button.textContent="Checking release…";
   try {
+    const { getGameRelease } = await import("./firebase.js");
     const release=await getGameRelease();
     renderWhatsNew(release); renderChangelog(release);
     if(updated)updated.textContent=formatDate(release.updatedAt); if(size)size.textContent=formatBytes(release.sizeBytes);
