@@ -6,12 +6,27 @@ export const GAMES = [
     description: 'BitLife Android mod releases.',
     releases: [
       {
+        id: 'bitlife-1-5',
+        title: 'Bug Fixes',
+        version: 'v1.5',
+        platform: 'BitLife 3.24.5',
+        date: '2026-09-07',
+        isLatestUpdate: true,
+        changelog: [
+          { type: 'fix', text: 'Bug Fixes' },
+          { type: 'improve', text: 'Updated Game Version to BitLife v3.24.5' }
+        ],
+        requires: 'BitLife v3.24.5',
+        downloadUrl: 'https://upfiles.com/joT7Nxz',
+        mirrorUrl: 'https://cuty.io/SctPoBMLHsTs'
+      },
+      {
         id: 'bitlife-1-4',
         title: 'Fixes and Improvements',
         version: 'v1.4',
         platform: 'BitLife 3.24',
         date: '2026-08-16',
-        isLatestUpdate: true,
+        isLatestUpdate: false,
         changelog: [
           { type: 'fix', text: 'Fixed Talent Modifier' },
           { type: 'fix', text: 'Fixed Cult' },
