@@ -9,14 +9,14 @@ export const GAMES = [
         id: 'bitlife-1-5',
         title: 'Bug Fixes',
         version: 'v1.5',
-        platform: 'BitLife 3.24.5',
+        platform: 'BitLife 3.24.6',
         date: '2026-09-07',
         isLatestUpdate: true,
         changelog: [
           { type: 'fix', text: 'Bug Fixes' },
-          { type: 'improve', text: 'Updated Game Version to BitLife v3.24.5' }
+          { type: 'improve', text: 'Updated Game Version to BitLife v3.24.6' }
         ],
-        requires: 'BitLife v3.24.5',
+        requires: 'BitLife v3.24.6',
         downloadUrl: 'https://upfiles.com/joT7Nxz',
         mirrorUrl: 'https://cuty.io/SctPoBMLHsTs'
       },
