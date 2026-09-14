@@ -6,12 +6,24 @@ export const GAMES = [
     description: 'BitLife Android mod releases.',
     releases: [
       {
+        id: 'bitlife-1-6',
+        title: 'BitLife Mod Menu 1.6',
+        version: 'v1.6',
+        platform: 'BitLife 3.24.6',
+        date: '2026-09-14',
+        isLatestUpdate: true,
+        changelog: [],
+        requires: 'BitLife v3.24.6',
+        downloadUrl: 'https://upfiles.com/X72XeLN1',
+        mirrorUrl: 'https://cuty.io/a6Z9Pm'
+      },
+      {
         id: 'bitlife-1-5',
         title: 'Bug Fixes',
         version: 'v1.5',
         platform: 'BitLife 3.24.6',
         date: '2026-09-07',
-        isLatestUpdate: true,
+        isLatestUpdate: false,
         changelog: [
           { type: 'fix', text: 'Bug Fixes' },
           { type: 'improve', text: 'Updated Game Version to BitLife v3.24.6' }
