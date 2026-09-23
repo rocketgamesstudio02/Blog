@@ -2,7 +2,7 @@ export const GAMES = [
   {
     id: 'altlife',
     name: 'AltLife',
-    icon: './assets/mods-icon.png',
+    icon: 'https://play-lh.googleusercontent.com/Czbacld7Ha3rizssHsPDojxa5YcSlnxIqAsYttEXIKvlyH0Nto9RS8rjbUIhT7y1c3gg21__IJnMkRpoG9QJ=w240-h480',
     description: 'AltLife Android mod releases.',
     releases: [
       {
@@ -22,7 +22,7 @@ export const GAMES = [
   {
     id: 'ancient-life',
     name: 'Ancient Life',
-    icon: './assets/mods-icon.png',
+    icon: 'https://play-lh.googleusercontent.com/FpOCGWQ9y_QvzujwNiigMHwKsSbbzYiWHKtjMF37Kwd2RPQgR_Vqp-dX2ZrW51J_-au8tpb0C8d8Su8fCFFFoQ=w240-h480',
     description: 'Ancient Life Android mod releases.',
     releases: [
       {
@@ -42,7 +42,7 @@ export const GAMES = [
   {
     id: 'another-life',
     name: 'Another Life',
-    icon: './assets/mods-icon.png',
+    icon: 'https://play-lh.googleusercontent.com/pYyr__eGv5TSaPnFFpB-G0t07RRDKNdnJ3iP1FlC-2AncdOxFJepT4WrzVaKbjY6r8c=w240-h480',
     description: 'Another Life Android mod releases.',
     releases: [
       {
@@ -62,7 +62,7 @@ export const GAMES = [
   {
     id: 'bitlife',
     name: 'BitLife',
-    icon: './assets/bitlife-icon.svg',
+    icon: 'https://play-lh.googleusercontent.com/OVgQx7M6lk9VcFZKIY_80siUOESLsu5gtwAKrjIruM097U-at161KrQ6Svxw3uPhY4EfKTGNrlpsd12k4TV6HA=w240-h480',
     description: 'BitLife Android mod releases.',
     releases: [
       {
@@ -184,7 +184,7 @@ export const GAMES = [
   {
     id: 'bitlife-go',
     name: 'BitLife GO',
-    icon: './assets/mods-icon.png',
+    icon: 'https://play-lh.googleusercontent.com/nJRcYEmj-b9OC9gOO-_5awhGjxEyXTKZJiV9LAMgUwvMOgk6hhrxoI4TkV1BqsZ0BT2lqF3KYMRgUd2QZukSajY=w240-h480',
     description: 'BitLife GO Android mod releases.',
     releases: [
       {
@@ -204,7 +204,7 @@ export const GAMES = [
   {
     id: 'relife',
     name: 'Relife',
-    icon: './assets/mods-icon.png',
+    icon: 'https://play-lh.googleusercontent.com/2Vv_tiJx5BGCikSZEMRO78u9cYKBocy03sq0Sycj3UANe6f-4AXg3K5WgrAe85vx3pPadNZDd7o9XzT0aWJt=w240-h480',
     description: 'Relife Android mod releases.',
     releases: [
       {
@@ -224,7 +224,7 @@ export const GAMES = [
   {
     id: 'verdant-life',
     name: 'Verdant Life',
-    icon: './assets/mods-icon.png',
+    icon: 'https://play-lh.googleusercontent.com/GCwuMHZO68KFApx8BdxiUB7Uxy9kJvz4pMCuCEs7NMkLe5MVgBIgaU3eXZCDp57PCwdoDceTj45yU1visoTFHgY=w240-h480',
     description: 'Verdant Life Android mod releases.',
     releases: [
       {
