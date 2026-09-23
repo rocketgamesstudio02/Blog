@@ -1,17 +1,89 @@
 export const GAMES = [
   {
+    id: 'altlife',
+    name: 'AltLife',
+    icon: './assets/mods-icon.png',
+    description: 'AltLife Android mod releases.',
+    releases: [
+      {
+        id: 'altlife-1-0',
+        title: 'AltLife Mod 1.0',
+        version: 'v1.0',
+        platform: 'AltLife 48',
+        date: '2026-09-23',
+        isLatestUpdate: true,
+        changelog: [],
+        requires: 'AltLife v48',
+        downloadUrl: 'https://upfiles.com/9SL3tO',
+        mirrorUrl: 'https://shareverge.com/2bJG8KJQzOBE/file'
+      }
+    ]
+  },
+  {
+    id: 'ancient-life',
+    name: 'Ancient Life',
+    icon: './assets/mods-icon.png',
+    description: 'Ancient Life Android mod releases.',
+    releases: [
+      {
+        id: 'ancient-life-1-0',
+        title: 'Ancient Life Mod 1.0',
+        version: 'v1.0',
+        platform: 'Ancient Life 1.4.2',
+        date: '2026-09-23',
+        isLatestUpdate: true,
+        changelog: [],
+        requires: 'Ancient Life v1.4.2',
+        downloadUrl: 'https://upfiles.com/eQQqtTPQ',
+        mirrorUrl: 'https://shareverge.com/dkD3YlRXmLQK/file'
+      }
+    ]
+  },
+  {
+    id: 'another-life',
+    name: 'Another Life',
+    icon: './assets/mods-icon.png',
+    description: 'Another Life Android mod releases.',
+    releases: [
+      {
+        id: 'another-life-1-0',
+        title: 'Another Life Mod 1.0',
+        version: 'v1.0',
+        platform: 'Another Life 4.4.8',
+        date: '2026-09-23',
+        isLatestUpdate: true,
+        changelog: [],
+        requires: 'Another Life v4.4.8',
+        downloadUrl: 'https://upfiles.com/XlnS6',
+        mirrorUrl: 'https://shareverge.com/jar3XVLQG2dD/file'
+      }
+    ]
+  },
+  {
     id: 'bitlife',
     name: 'BitLife',
     icon: './assets/bitlife-icon.svg',
     description: 'BitLife Android mod releases.',
     releases: [
       {
+        id: 'bitlife-1-7',
+        title: 'BitLife Mod Menu 1.7',
+        version: 'v1.7',
+        platform: 'BitLife 3.25',
+        date: '2026-09-23',
+        isLatestUpdate: true,
+        changelog: [],
+        requires: 'BitLife v3.25',
+        downloadUrl: 'https://upfiles.com/csOo9',
+        mirrorUrl: 'https://shareverge.com/LJlGn196z15w/file'
+      },
+      {
         id: 'bitlife-1-61',
         title: 'BitLife Mod Menu 1.61',
         version: 'v1.61',
         platform: 'BitLife 3.25',
         date: '2026-09-20',
-        isLatestUpdate: true,
+        isLatestUpdate: false,
         changelog: [],
         requires: 'BitLife v3.25',
         downloadUrl: 'https://upfiles.com/veATNz',
@@ -106,6 +178,66 @@ export const GAMES = [
         requires: 'BitLife v3.24',
         downloadUrl: 'https://upfiles.com/IOELuguw',
         mirrorUrl: 'https://cuty.io/lW9yR'
+      }
+    ]
+  },
+  {
+    id: 'bitlife-go',
+    name: 'BitLife GO',
+    icon: './assets/mods-icon.png',
+    description: 'BitLife GO Android mod releases.',
+    releases: [
+      {
+        id: 'bitlife-go-1-0',
+        title: 'BitLife GO Mod 1.0',
+        version: 'v1.0',
+        platform: 'BitLife GO 1.2.10',
+        date: '2026-09-23',
+        isLatestUpdate: true,
+        changelog: [],
+        requires: 'BitLife GO v1.2.10',
+        downloadUrl: 'https://upfiles.com/5FKSmX',
+        mirrorUrl: 'https://shareverge.com/dZxG5JeNmVjK/file'
+      }
+    ]
+  },
+  {
+    id: 'relife',
+    name: 'Relife',
+    icon: './assets/mods-icon.png',
+    description: 'Relife Android mod releases.',
+    releases: [
+      {
+        id: 'relife-1-0',
+        title: 'Relife Mod 1.0',
+        version: 'v1.0',
+        platform: 'Relife 2.0.5',
+        date: '2026-09-23',
+        isLatestUpdate: true,
+        changelog: [],
+        requires: 'Relife v2.0.5',
+        downloadUrl: 'https://upfiles.com/CHZrP',
+        mirrorUrl: 'https://shareverge.com/7d5GL1vQmxRJ/file'
+      }
+    ]
+  },
+  {
+    id: 'verdant-life',
+    name: 'Verdant Life',
+    icon: './assets/mods-icon.png',
+    description: 'Verdant Life Android mod releases.',
+    releases: [
+      {
+        id: 'verdant-life-1-0',
+        title: 'Verdant Life Mod 1.0',
+        version: 'v1.0',
+        platform: 'Verdant Life 3.75',
+        date: '2026-09-23',
+        isLatestUpdate: true,
+        changelog: [],
+        requires: 'Verdant Life v3.75',
+        downloadUrl: 'https://upfiles.com/B5OSU',
+        mirrorUrl: 'https://shareverge.com/5pVzNWwJG7wv/file'
       }
     ]
   }
