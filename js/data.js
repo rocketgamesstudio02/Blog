@@ -8,4 +8,4 @@ export const GAMES = [
     releases: [
       {
         id: 'altlife-1-0',
-       
+        title: 'AltLife Mod 
