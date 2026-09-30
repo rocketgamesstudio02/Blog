@@ -1,4 +1,4 @@
-import { GAMES } from "./data.js?v=20260924-2";
+import { GAMES } from "./data.js?v=20260930-1";
 
 const $ = (selector, root = document) => root.querySelector(selector);
 
@@ -34,7 +34,7 @@ function previewHtml(mod) {
   return `<img src="${safeUrl}" alt="${safeTitle} preview" loading="lazy" style="width:100%;border-radius:14px;">`;
 }
 
-function downloadLinksHtml(mod, isSupported) {
+function downloadLinksHtml(mod, game, isSupported) {
   if (!isSupported) {
     return '<p class="requires-tag">Support has ended for this release. Download links are no longer available.</p>';
   }
@@ -43,13 +43,12 @@ function downloadLinksHtml(mod, isSupported) {
     <div class="mod-links">
       <a class="button primary" href="${escapeHtml(mod.downloadUrl)}" rel="noopener noreferrer">Main link</a>
       ${mod.mirrorUrl ? `<a class="button secondary" href="${escapeHtml(mod.mirrorUrl)}" rel="noopener noreferrer">Mirror</a>` : ""}
+      ${game.playStoreUrl ? `<a class="button secondary" href="${escapeHtml(game.playStoreUrl)}" target="_blank" rel="noopener noreferrer">Google Play</a>` : ""}
     </div>
   `;
 }
 
-function releaseCard(mod) {
-  // Support is controlled explicitly per release. Older releases stay downloadable
-  // unless isSupported is deliberately set to false in data.js.
+function releaseCard(mod, game) {
   const isSupported = mod.isSupported !== false;
   const statusBadge = !isSupported
     ? '<span class="new-badge">SUPPORT ENDED</span>'
@@ -79,7 +78,7 @@ function releaseCard(mod) {
         <div class="mod-details">
           <p class="requires-tag">${escapeHtml(mod.requires)}</p>
           <ul>${changelogHtml(mod.changelog)}</ul>
-          ${downloadLinksHtml(mod, isSupported)}
+          ${downloadLinksHtml(mod, game, isSupported)}
         </div>
       </details>
     </article>
@@ -109,7 +108,7 @@ function showGame(gameId) {
   $("#selectedGameName").textContent = game.name;
   $("#selectedGameIcon").src = game.icon;
   $("#selectedGameIcon").alt = `${game.name} icon`;
-  $("#modGrid").innerHTML = game.releases.map(releaseCard).join("");
+  $("#modGrid").innerHTML = game.releases.map((mod) => releaseCard(mod, game)).join("");
   $("#modsCount").textContent = `${game.releases.length} release${game.releases.length === 1 ? "" : "s"}`;
 }
 
