@@ -70,6 +70,9 @@ export const GAMES = [
     icon: 'https://play-lh.googleusercontent.com/GCwuMHZO68KFApx8BdxiUB7Uxy9kJvz4pMCuCEs7NMkLe5MVgBIgaU3eXZCDp57PCwdoDceTj45yU1visoTFHgY=w240-h480',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.verdant.lifesim',
     description: 'Verdant Life Android mod releases.',
-    releases: [{ id: 'verdant-life-1-0', title: 'Verdant Life Mod 1.0', version: 'v1.0', platform: 'Verdant Life 3.75', date: '2026-09-23', isLatestUpdate: true, isSupported: true, previewUrl: '', changelog: [], requires: 'Verdant Life v3.75', downloadUrl: 'https://upfiles.com/B5OSU', mirrorUrl: 'https://shareverge.com/5pVzNWwJG7wv/file' }]
+    releases: [
+      { id: 'verdant-life-1-0-fixed', title: 'Verdant Life Mod 1.0 Fixed', version: 'v1.0 Fixed', platform: 'Verdant Life 3.75', date: '2026-10-02', isLatestUpdate: true, isSupported: true, previewUrl: '', changelog: [], requires: 'Verdant Life v3.75', downloadUrl: 'https://upfiles.com/yIVrfC', mirrorUrl: 'https://shareverge.com/qLQ366Kd319j/file' },
+      { id: 'verdant-life-1-0', title: 'Verdant Life Mod 1.0', version: 'v1.0', platform: 'Verdant Life 3.75', date: '2026-09-23', isLatestUpdate: false, isSupported: false, previewUrl: '', changelog: [], requires: 'Verdant Life v3.75', downloadUrl: '', mirrorUrl: '' }
+    ]
   }
 ];
