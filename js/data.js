@@ -49,6 +49,14 @@ export const GAMES = [
     releases: [{ id: 'bitlife-go-1-0', title: 'BitLife GO Mod 1.0', version: 'v1.0', platform: 'BitLife GO 1.2.10', date: '2026-09-23', isLatestUpdate: true, isSupported: true, changelog: [], requires: 'BitLife GO v1.2.10', downloadUrl: 'https://upfiles.com/5FKSmX', mirrorUrl: 'https://shareverge.com/dZxG5JeNmVjK/file' }]
   },
   {
+    id: 'clout-life',
+    name: 'Clout Life',
+    icon: 'https://play-lh.googleusercontent.com/O2wGDKRmCrbUqcue3JojLXyW3LESimG0huGCEn1fD57PffrDpIfb7nBikPehChPiXkHyMa7nNU0LhgM3POTSilI=w240-h480',
+    playStoreUrl: 'https://play.google.com/store/apps/details?id=com.cloutlife.genzlife',
+    description: 'Clout Life Android mod releases.',
+    releases: [{ id: 'clout-life-1-0', title: 'Clout Life Mod 1.0', version: 'v1.0', platform: 'Clout Life 1.0.1', date: '2026-10-04', isLatestUpdate: true, isSupported: true, changelog: [], requires: 'Clout Life v1.0.1', downloadUrl: 'https://upfiles.com/MnXUHhGr', mirrorUrl: 'https://shareverge.com/N2p3DEekzMa5/file' }]
+  },
+  {
     id: 'kingdom-reborn',
     name: 'Kingdom Reborn',
     icon: 'https://play-lh.googleusercontent.com/9rDcw5EudwboNPM6PGJYETHWbD7ePjSz22mjlVM8N7N0poeBFu1hd9QH7sIKUjhvPbeQEBIxQzMiAFrsC6fjMg=w240-h480',
