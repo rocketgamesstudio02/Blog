@@ -1,4 +1,4 @@
-import { GAMES } from "./data.js?v=20261003-2";
+import { GAMES } from "./data.js?v=20261004-1";
 
 const $ = (selector, root = document) => root.querySelector(selector);
 
