@@ -1,0 +1,115 @@
+/* Mods-page theme, game-level previews and release status. */
+html[data-theme="dark"] {
+  --bg: #0e1117;
+  --bg-soft: #131821;
+  --panel: #171c25;
+  --panel-2: #1d2430;
+  --line: #2a3442;
+  --line-strong: #3a4657;
+  --text: #f4f7fb;
+  --muted: #9aa7b8;
+  --accent: #5d9eff;
+  --accent-strong: #77adff;
+  --green: #55cf88;
+  --shadow: 0 18px 42px rgba(0,0,0,.28);
+  color-scheme: dark;
+}
+html[data-theme="dark"] body {
+  background: radial-gradient(circle at top right, rgba(93,158,255,.07), transparent 28rem), var(--bg);
+}
+html[data-theme="dark"] .site-header { background: rgba(14,17,23,.9); border-bottom-color: var(--line); }
+html[data-theme="dark"] .footer { background: rgba(14,17,23,.7); }
+html[data-theme="dark"] .mod-top { background: linear-gradient(180deg, #1d2430, #171c25); }
+html[data-theme="dark"] .back-link { color: var(--text); }
+.game-preview-panel {
+  margin: 0 0 20px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--panel);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.game-preview-panel > summary {
+  padding: 17px 20px;
+  cursor: pointer;
+  color: var(--text);
+  font-size: .95rem;
+  font-weight: 700;
+  list-style: none;
+}
+.game-preview-panel > summary::-webkit-details-marker { display: none; }
+.game-preview-panel > summary::after { content: "+"; float: right; color: var(--muted); }
+.game-preview-panel[open] > summary::after { content: "−"; }
+.game-preview-content { padding: 0 18px 18px; }
+.game-preview-content > .requires-tag { margin: 0; padding-top: 6px; }
+.game-preview-gallery { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 16px; }
+.game-preview-item {
+  flex: 0 1 256px;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--panel-2);
+}
+.game-preview-item a { display: block; }
+.game-preview-item img, .game-preview-item video {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 520px;
+  object-fit: contain;
+}
+.unavailable-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #b42318;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .02em;
+  white-space: nowrap;
+}
+html[data-theme="dark"] .unavailable-badge {
+  border-color: #813d44;
+  background: #41212b;
+  color: #ffb4b4;
+}
+.mod-card.unavailable .mod-top { opacity: .85; }
+.theme-toggle-fab {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 100;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 14px 34px rgba(15,23,42,.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.theme-toggle-fab svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@media (max-width: 720px) {
+  html[data-theme="dark"] .nav-links { background: rgba(23,28,37,.98); }
+  .game-preview-item { flex-basis: min(100%, 260px); }
+  .theme-toggle-fab { right: 14px; bottom: 14px; width: 50px; height: 50px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-fab { transition: none; }
+}

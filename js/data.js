@@ -5,7 +5,7 @@ export const GAMES = [
     icon: 'https://play-lh.googleusercontent.com/Czbacld7Ha3rizssHsPDojxa5YcSlnxIqAsYttEXIKvlyH0Nto9RS8rjbUIhT7y1c3gg21__IJnMkRpoG9QJ=w240-h480',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.QmzApps.LifeStory',
     description: 'AltLife Android mod releases.',
-    releases: [{ id: 'altlife-1-0', title: 'AltLife Mod 1.0', version: 'v1.0', platform: 'AltLife 48', date: '2026-09-23', isLatestUpdate: true, isSupported: true, previewUrl: '', changelog: [], requires: 'AltLife v48', downloadUrl: 'https://upfiles.com/9SL3tO', mirrorUrl: 'https://shareverge.com/2bJG8KJQzOBE/file' }]
+    releases: [{ id: 'altlife-1-0', title: 'AltLife Mod 1.0', version: 'v1.0', platform: 'AltLife 48', date: '2026-09-23', isLatestUpdate: true, isSupported: true, changelog: [], requires: 'AltLife v48', downloadUrl: 'https://upfiles.com/9SL3tO', mirrorUrl: 'https://shareverge.com/2bJG8KJQzOBE/file' }]
   },
   {
     id: 'ancient-life',
@@ -13,7 +13,7 @@ export const GAMES = [
     icon: 'https://play-lh.googleusercontent.com/FpOCGWQ9y_QvzujwNiigMHwKsSbbzYiWHKtjMF37Kwd2RPQgR_Vqp-dX2ZrW51J_-au8tpb0C8d8Su8fCFFFoQ=w240-h480',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.wingjoy.dynastyLife.inter',
     description: 'Ancient Life Android mod releases.',
-    releases: [{ id: 'ancient-life-1-0', title: 'Ancient Life Mod 1.0', version: 'v1.0', platform: 'Ancient Life 1.4.2', date: '2026-09-23', isLatestUpdate: true, isSupported: true, previewUrl: '', changelog: [], requires: 'Ancient Life v1.4.2', downloadUrl: 'https://upfiles.com/eQQqtTPQ', mirrorUrl: 'https://shareverge.com/dkD3YlRXmLQK/file' }]
+    releases: [{ id: 'ancient-life-1-0', title: 'Ancient Life Mod 1.0', version: 'v1.0', platform: 'Ancient Life 1.4.2', date: '2026-09-23', isLatestUpdate: true, isSupported: true, changelog: [], requires: 'Ancient Life v1.4.2', downloadUrl: 'https://upfiles.com/eQQqtTPQ', mirrorUrl: 'https://shareverge.com/dkD3YlRXmLQK/file' }]
   },
   {
     id: 'another-life',
@@ -21,7 +21,7 @@ export const GAMES = [
     icon: 'https://play-lh.googleusercontent.com/pYyr__eGv5TSaPnFFpB-G0t07RRDKNdnJ3iP1FlC-2AncdOxFJepT4WrzVaKbjY6r8c=w240-h480',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.anotherlife.lifesimulator',
     description: 'Another Life Android mod releases.',
-    releases: [{ id: 'another-life-1-0', title: 'Another Life Mod 1.0', version: 'v1.0', platform: 'Another Life 4.4.8', date: '2026-09-23', isLatestUpdate: true, isSupported: true, previewUrl: '', changelog: [], requires: 'Another Life v4.4.8', downloadUrl: 'https://upfiles.com/XlnS6', mirrorUrl: 'https://shareverge.com/jar3XVLQG2dD/file' }]
+    releases: [{ id: 'another-life-1-0', title: 'Another Life Mod 1.0', version: 'v1.0', platform: 'Another Life 4.4.8', date: '2026-09-23', isLatestUpdate: true, isSupported: true, changelog: [], requires: 'Another Life v4.4.8', downloadUrl: 'https://upfiles.com/XlnS6', mirrorUrl: 'https://shareverge.com/jar3XVLQG2dD/file' }]
   },
   {
     id: 'bitlife',
@@ -30,14 +30,14 @@ export const GAMES = [
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.candywriter.bitlife',
     description: 'BitLife Android mod releases.',
     releases: [
-      { id: 'bitlife-1-7', title: 'BitLife Mod Menu 1.7', version: 'v1.7', platform: 'BitLife 3.25', date: '2026-09-23', isLatestUpdate: true, isSupported: true, previewUrl: '', changelog: [], requires: 'BitLife v3.25', downloadUrl: 'https://upfiles.com/csOo9', mirrorUrl: 'https://shareverge.com/LJlGn196z15w/file' },
-      { id: 'bitlife-1-61', title: 'BitLife Mod Menu 1.61', version: 'v1.61', platform: 'BitLife 3.25', date: '2026-09-20', isLatestUpdate: false, isSupported: true, previewUrl: '', changelog: [], requires: 'BitLife v3.25', downloadUrl: 'https://upfiles.com/veATNz', mirrorUrl: 'https://cuty.io/1h2fZb' },
-      { id: 'bitlife-1-6', title: 'BitLife Mod Menu 1.6', version: 'v1.6', platform: 'BitLife 3.25', date: '2026-09-14', isLatestUpdate: false, isSupported: true, previewUrl: '', changelog: [], requires: 'BitLife v3.25', downloadUrl: 'https://upfiles.com/X72XeLN1', mirrorUrl: 'https://cuty.io/a6Z9Pm' },
-      { id: 'bitlife-1-5', title: 'Bug Fixes', version: 'v1.5', platform: 'BitLife 3.24.6', date: '2026-09-07', isLatestUpdate: false, isSupported: true, previewUrl: '', changelog: [{ type: 'fix', text: 'Bug Fixes' }, { type: 'improve', text: 'Updated Game Version to BitLife v3.24.6' }], requires: 'BitLife v3.24.6', downloadUrl: 'https://upfiles.com/joT7Nxz', mirrorUrl: 'https://cuty.io/SctPoBMLHsTs' },
-      { id: 'bitlife-1-4', title: 'Fixes and Improvements', version: 'v1.4', platform: 'BitLife 3.24', date: '2026-08-16', isLatestUpdate: false, isSupported: true, previewUrl: '', changelog: [{ type: 'fix', text: 'Fixed Talent Modifier' }, { type: 'fix', text: 'Fixed Cult' }, { type: 'fix', text: 'Fixed Mafia Family' }, { type: 'fix', text: 'Fixed Product Supplier' }, { type: 'improve', text: 'Improved Military Rank Modifier' }], requires: 'BitLife v3.24', downloadUrl: 'https://upfiles.com/pKts5', mirrorUrl: 'https://cuty.io/rEhhlJzjTLv' },
-      { id: 'bitlife-1-3', title: 'Added Customizable Purchase', version: 'v1.3', platform: 'BitLife 3.24', date: '2026-08-05', isLatestUpdate: false, isSupported: true, previewUrl: '', changelog: [{ type: 'add', text: 'Added Purchase Menu' }, { type: 'fix', text: 'Fixed Athlete Features Not Working' }], requires: 'BitLife v3.24', downloadUrl: 'https://upfiles.com/MNcis', mirrorUrl: 'https://cuty.io/ayE1YYfSb' },
-      { id: 'bitlife-1-2', title: 'Bug Fixes', version: 'v1.2', platform: 'BitLife 3.24', date: '2026-08-01', isLatestUpdate: false, isSupported: true, previewUrl: '', changelog: [{ type: 'add', text: 'Added Update Checks' }, { type: 'fix', text: 'Fixed some features not working' }], requires: 'BitLife v3.24', downloadUrl: 'https://upfiles.com/RdG2Q', mirrorUrl: 'https://cuty.io/7dx3' },
-      { id: 'bitlife-1-0', title: 'New Royal Menu', version: 'v1.0', platform: 'BitLife 3.24', date: '2026-07-28', isLatestUpdate: false, isSupported: true, previewUrl: '', changelog: [{ type: 'add', text: 'Added New Royal Menu.' }, { type: 'add', text: 'You can now become Royal anytime with the help of the mod!' }], requires: 'BitLife v3.24', downloadUrl: 'https://upfiles.com/IOELuguw', mirrorUrl: 'https://cuty.io/lW9yR' }
+      { id: 'bitlife-1-7', title: 'BitLife Mod Menu 1.7', version: 'v1.7', platform: 'BitLife 3.25', date: '2026-09-23', isLatestUpdate: true, isSupported: true, changelog: [], requires: 'BitLife v3.25', downloadUrl: 'https://upfiles.com/csOo9', mirrorUrl: 'https://shareverge.com/LJlGn196z15w/file' },
+      { id: 'bitlife-1-61', title: 'BitLife Mod Menu 1.61', version: 'v1.61', platform: 'BitLife 3.25', date: '2026-09-20', isLatestUpdate: false, isSupported: true, changelog: [], requires: 'BitLife v3.25', downloadUrl: 'https://upfiles.com/veATNz', mirrorUrl: 'https://cuty.io/1h2fZb' },
+      { id: 'bitlife-1-6', title: 'BitLife Mod Menu 1.6', version: 'v1.6', platform: 'BitLife 3.25', date: '2026-09-14', isLatestUpdate: false, isSupported: true, changelog: [], requires: 'BitLife v3.25', downloadUrl: 'https://upfiles.com/X72XeLN1', mirrorUrl: 'https://cuty.io/a6Z9Pm' },
+      { id: 'bitlife-1-5', title: 'Bug Fixes', version: 'v1.5', platform: 'BitLife 3.24.6', date: '2026-09-07', isLatestUpdate: false, isSupported: true, changelog: [{ type: 'fix', text: 'Bug Fixes' }, { type: 'improve', text: 'Updated Game Version to BitLife v3.24.6' }], requires: 'BitLife v3.24.6', downloadUrl: 'https://upfiles.com/joT7Nxz', mirrorUrl: 'https://cuty.io/SctPoBMLHsTs' },
+      { id: 'bitlife-1-4', title: 'Fixes and Improvements', version: 'v1.4', platform: 'BitLife 3.24', date: '2026-08-16', isLatestUpdate: false, isSupported: true, changelog: [{ type: 'fix', text: 'Fixed Talent Modifier' }, { type: 'fix', text: 'Fixed Cult' }, { type: 'fix', text: 'Fixed Mafia Family' }, { type: 'fix', text: 'Fixed Product Supplier' }, { type: 'improve', text: 'Improved Military Rank Modifier' }], requires: 'BitLife v3.24', downloadUrl: 'https://upfiles.com/pKts5', mirrorUrl: 'https://cuty.io/rEhhlJzjTLv' },
+      { id: 'bitlife-1-3', title: 'Added Customizable Purchase', version: 'v1.3', platform: 'BitLife 3.24', date: '2026-08-05', isLatestUpdate: false, isSupported: true, changelog: [{ type: 'add', text: 'Added Purchase Menu' }, { type: 'fix', text: 'Fixed Athlete Features Not Working' }], requires: 'BitLife v3.24', downloadUrl: 'https://upfiles.com/MNcis', mirrorUrl: 'https://cuty.io/ayE1YYfSb' },
+      { id: 'bitlife-1-2', title: 'Bug Fixes', version: 'v1.2', platform: 'BitLife 3.24', date: '2026-08-01', isLatestUpdate: false, isSupported: true, changelog: [{ type: 'add', text: 'Added Update Checks' }, { type: 'fix', text: 'Fixed some features not working' }], requires: 'BitLife v3.24', downloadUrl: 'https://upfiles.com/RdG2Q', mirrorUrl: 'https://cuty.io/7dx3' },
+      { id: 'bitlife-1-0', title: 'New Royal Menu', version: 'v1.0', platform: 'BitLife 3.24', date: '2026-07-28', isLatestUpdate: false, isSupported: true, changelog: [{ type: 'add', text: 'Added New Royal Menu.' }, { type: 'add', text: 'You can now become Royal anytime with the help of the mod!' }], requires: 'BitLife v3.24', downloadUrl: 'https://upfiles.com/IOELuguw', mirrorUrl: 'https://cuty.io/lW9yR' }
     ]
   },
   {
@@ -46,7 +46,7 @@ export const GAMES = [
     icon: 'https://play-lh.googleusercontent.com/nJRcYEmj-b9OC9gOO-_5awhGjxEyXTKZJiV9LAMgUwvMOgk6hhrxoI4TkV1BqsZ0BT2lqF3KYMRgUd2QZukSajY=w240-h480',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.goodgamestudios.bitlife.go.life.simulation',
     description: 'BitLife GO Android mod releases.',
-    releases: [{ id: 'bitlife-go-1-0', title: 'BitLife GO Mod 1.0', version: 'v1.0', platform: 'BitLife GO 1.2.10', date: '2026-09-23', isLatestUpdate: true, isSupported: true, previewUrl: '', changelog: [], requires: 'BitLife GO v1.2.10', downloadUrl: 'https://upfiles.com/5FKSmX', mirrorUrl: 'https://shareverge.com/dZxG5JeNmVjK/file' }]
+    releases: [{ id: 'bitlife-go-1-0', title: 'BitLife GO Mod 1.0', version: 'v1.0', platform: 'BitLife GO 1.2.10', date: '2026-09-23', isLatestUpdate: true, isSupported: true, changelog: [], requires: 'BitLife GO v1.2.10', downloadUrl: 'https://upfiles.com/5FKSmX', mirrorUrl: 'https://shareverge.com/dZxG5JeNmVjK/file' }]
   },
   {
     id: 'kingdom-reborn',
@@ -54,9 +54,13 @@ export const GAMES = [
     icon: 'https://play-lh.googleusercontent.com/9rDcw5EudwboNPM6PGJYETHWbD7ePjSz22mjlVM8N7N0poeBFu1hd9QH7sIKUjhvPbeQEBIxQzMiAFrsC6fjMg=w240-h480',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.kingdomreborn.app',
     description: 'Kingdom Reborn Android mod releases.',
+    previews: [
+      { url: './assets/kingdom-reborn-preview-1.webp', alt: 'Kingdom Reborn VIP store package and bundles' },
+      { url: './assets/kingdom-reborn-preview-2.webp', alt: 'Kingdom Reborn character attributes and lifetime stats' }
+    ],
     releases: [
-      { id: 'kingdom-reborn-1-0-fixed', title: 'Kingdom Reborn Mod 1.0 Fixed', version: 'v1.0 Fixed', platform: 'Kingdom Reborn', date: '2026-10-03', isLatestUpdate: true, isSupported: true, previewUrl: '', changelog: [], requires: 'Kingdom Reborn', downloadUrl: 'https://upfiles.com/yIVrfC', mirrorUrl: 'https://shareverge.com/qLQ366Kd319j/file' },
-      { id: 'kingdom-reborn-1-0', title: 'Kingdom Reborn Mod 1.0', version: 'v1.0', platform: 'Kingdom Reborn', date: '2026-09-30', isLatestUpdate: false, isSupported: false, previewUrl: '', changelog: [], requires: 'Kingdom Reborn', downloadUrl: '', mirrorUrl: '' }
+      { id: 'kingdom-reborn-1-0-fixed', title: 'Kingdom Reborn Mod 1.0 Fixed', version: 'v1.0 Fixed', platform: 'Kingdom Reborn', date: '2026-10-03', isLatestUpdate: true, isSupported: true, changelog: [], requires: 'Kingdom Reborn', downloadUrl: 'https://upfiles.com/yIVrfC', mirrorUrl: 'https://shareverge.com/qLQ366Kd319j/file' },
+      { id: 'kingdom-reborn-1-0', title: 'Kingdom Reborn Mod 1.0', version: 'v1.0', platform: 'Kingdom Reborn', date: '2026-09-30', isLatestUpdate: false, isSupported: false, changelog: [], requires: 'Kingdom Reborn', downloadUrl: '', mirrorUrl: '' }
     ]
   },
   {
@@ -65,7 +69,7 @@ export const GAMES = [
     icon: 'https://play-lh.googleusercontent.com/2Vv_tiJx5BGCikSZEMRO78u9cYKBocy03sq0Sycj3UANe6f-4AXg3K5WgrAe85vx3pPadNZDd7o9XzT0aWJt=w240-h480',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.reimer.relife',
     description: 'Relife Android mod releases.',
-    releases: [{ id: 'relife-1-0', title: 'Relife Mod 1.0', version: 'v1.0', platform: 'Relife 2.0.5', date: '2026-09-23', isLatestUpdate: true, isSupported: true, previewUrl: '', changelog: [], requires: 'Relife v2.0.5', downloadUrl: 'https://upfiles.com/CHZrP', mirrorUrl: 'https://shareverge.com/7d5GL1vQmxRJ/file' }]
+    releases: [{ id: 'relife-1-0', title: 'Relife Mod 1.0', version: 'v1.0', platform: 'Relife 2.0.5', date: '2026-09-23', isLatestUpdate: true, isSupported: true, changelog: [], requires: 'Relife v2.0.5', downloadUrl: 'https://upfiles.com/CHZrP', mirrorUrl: 'https://shareverge.com/7d5GL1vQmxRJ/file' }]
   },
   {
     id: 'verdant-life',
@@ -73,6 +77,6 @@ export const GAMES = [
     icon: 'https://play-lh.googleusercontent.com/GCwuMHZO68KFApx8BdxiUB7Uxy9kJvz4pMCuCEs7NMkLe5MVgBIgaU3eXZCDp57PCwdoDceTj45yU1visoTFHgY=w240-h480',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.verdant.lifesim',
     description: 'Verdant Life Android mod releases.',
-    releases: [{ id: 'verdant-life-1-0', title: 'Verdant Life Mod 1.0', version: 'v1.0', platform: 'Verdant Life 3.75', date: '2026-09-23', isLatestUpdate: true, isSupported: true, previewUrl: '', changelog: [], requires: 'Verdant Life v3.75', downloadUrl: 'https://upfiles.com/B5OSU', mirrorUrl: 'https://shareverge.com/5pVzNWwJG7wv/file' }]
+    releases: [{ id: 'verdant-life-1-0', title: 'Verdant Life Mod 1.0', version: 'v1.0', platform: 'Verdant Life 3.75', date: '2026-09-23', isLatestUpdate: true, isSupported: true, changelog: [], requires: 'Verdant Life v3.75', downloadUrl: 'https://upfiles.com/B5OSU', mirrorUrl: 'https://shareverge.com/5pVzNWwJG7wv/file' }]
   }
 ];
